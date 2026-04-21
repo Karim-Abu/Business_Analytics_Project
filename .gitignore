@@ -1,2 +1,17 @@
-/data/raw/
-/data/processed/
+.venv/
+.vscode/
+
+Data/
+data/raw/
+data/processed/
+
+Feature Engineering/outputs/
+
+Tableau/*.hyper
+
+*.zip
+*.log
+
+**/__pycache__/
+**/*.pyc
+**/.ipynb_checkpoints/

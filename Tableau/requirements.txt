@@ -1,0 +1,6 @@
+# Tableau Extract Pipeline – Dependencies
+# Install: pip install -r requirements.txt
+pandas>=2.0
+numpy>=1.24
+pantab>=3.0
+pyarrow>=14.0
