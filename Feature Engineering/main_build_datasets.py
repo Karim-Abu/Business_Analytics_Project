@@ -28,18 +28,22 @@ from io_utils import (
     load_raw_data, merge_train_items, ensure_output_dirs,
     save_parquet, save_csv, save_text_report,
 )
-from preprocessing import run_all_preprocessing
-from validation import assert_preprocessing_integrity
-from split import run_split
-from pid_segment import fit_pid_segment, apply_pid_segment, save_pid_segment_map
-from feature_engineering_safe import run_all_safe_features
-from feature_engineering_conditional import run_all_conditional_features
+from Preprocessing.preprocessing import run_all_preprocessing
+from Preprocessing.validation import assert_preprocessing_integrity
+from Preprocessing.feature_engineering_safe import run_all_safe_features
+from Preprocessing.feature_engineering_conditional import run_all_conditional_features
+from Preprocessing.audit import run_full_audit
+from Sampling.split import run_split
+from Sampling.pid_segment import (
+    fit_pid_segment,
+    apply_pid_segment,
+    save_pid_segment_map,
+)
+from Sampling.sampling import run_sampling
 from feature_sets import (
     build_safe_feature_matrices, build_conditional_feature_matrices,
     summarize_feature_sets, export_matrices,
 )
-from sampling import run_sampling
-from audit import run_full_audit
 from orange_export import export_orange_csvs
 
 

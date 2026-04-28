@@ -15,7 +15,7 @@ import pandas as pd
 
 import config as cfg
 from feature_sets import get_feature_list, get_reg_mask
-from validation import (
+from Preprocessing.validation import (
     assert_no_forbidden_features,
     assert_no_duplicate_features,
     assert_cross_split_columns,

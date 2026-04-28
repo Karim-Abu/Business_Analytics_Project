@@ -13,7 +13,10 @@ import pandas as pd
 import numpy as np
 
 import config as cfg
-from validation import assert_no_forbidden_features, assert_no_duplicate_features
+from Preprocessing.validation import (
+    assert_no_forbidden_features,
+    assert_no_duplicate_features,
+)
 
 
 # ── Feature-list registry ────────────────────────────────────────────────────
