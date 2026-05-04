@@ -1,0 +1,25 @@
+                      matrix  n_rows  n_cols   target
+             X_test_cls_base  349447      33         
+      X_test_cls_conditional  349447      12         
+         X_test_cls_expanded  349447      35         
+             X_test_reg_base   82403      33         
+      X_test_reg_conditional   82403      11         
+         X_test_reg_expanded   82403      35         
+            X_train_cls_base 1521260      33         
+     X_train_cls_conditional 1521260      12         
+        X_train_cls_expanded 1521260      35         
+            X_train_reg_base  332546      33         
+     X_train_reg_conditional  332546      11         
+        X_train_reg_expanded  332546      35         
+       X_validation_cls_base  363483      33         
+X_validation_cls_conditional  363483      12         
+   X_validation_cls_expanded  363483      35         
+       X_validation_reg_base   87746      33         
+X_validation_reg_conditional   87746      11         
+   X_validation_reg_expanded   87746      35         
+                  y_test_cls  349447       1    order
+                  y_test_reg   82403       1 quantity
+                 y_train_cls 1521260       1    order
+                 y_train_reg  332546       1 quantity
+            y_validation_cls  363483       1    order
+            y_validation_reg   87746       1 quantity

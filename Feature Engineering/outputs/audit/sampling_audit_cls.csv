@@ -1,0 +1,16 @@
+feature,value,pop_frac,sample_frac,abs_diff
+order,0,0.77754,0.777539,1e-06
+order,1,0.22246,0.222461,1e-06
+pid_segment,Head,0.63826,0.63826,0.0
+pid_segment,Mid,0.305501,0.3055,1e-06
+pid_segment,Tail,0.05624,0.056241,1e-06
+availability,1,0.906896,0.907248,0.000351
+availability,2,0.071038,0.071062,2.3e-05
+availability,3,0.017545,0.017247,0.000299
+availability,4,0.00452,0.004444,7.6e-05
+genericProduct,0,0.900083,0.900602,0.000518
+genericProduct,1,0.099917,0.099398,0.000518
+adFlag,0,0.693685,0.694104,0.000418
+adFlag,1,0.306315,0.305896,0.000418
+competitorPrice_missing,0,0.961945,0.961882,6.3e-05
+competitorPrice_missing,1,0.038055,0.038118,6.3e-05

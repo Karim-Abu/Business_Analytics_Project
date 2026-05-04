@@ -1,0 +1,2 @@
+model,model_family,run_label,eval_scope,threshold,auc,logloss,accuracy,precision,recall,f1,mcc,tn,fp,fn,tp,fit_seconds,train_rows,eval_rows
+LightGBM Mid-Scale,LightGBM,lightgbm_mid_scale,full_test,0.5,0.7158596140703415,0.6197408867761806,0.6240116526969756,0.35886742756804213,0.7218456912392908,0.4793999476975014,0.2691551863904418,157564,108077,23311,60495,2.3332529999897815,300000,349447

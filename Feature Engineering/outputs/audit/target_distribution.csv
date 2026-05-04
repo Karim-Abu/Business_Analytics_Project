@@ -1,0 +1,4 @@
+split,n_rows,n_orders,order_rate,qty_mean,qty_median,qty_max,qty_n_valid
+train,1521260,338419,0.2225,1.38,1.0,306.0,338419
+test,349447,83806,0.2398,1.4,1.0,100.0,83806
+validation,363483,89348,0.2458,1.39,1.0,100.0,89348

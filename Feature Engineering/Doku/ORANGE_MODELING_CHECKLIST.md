@@ -3,6 +3,9 @@
 Manuelle Prüfliste beim erstmaligen Import der Orange-CSVs.
 Alle Dateien liegen unter `outputs/orange_exports/`.
 
+Die eigentliche Schritt-für-Schritt-Anleitung für den Modellierungsablauf liegt in
+`Doku/ORANGE_MODELING_SCHRITT_FUER_SCHRITT.md`.
+
 ---
 
 ## 1. Zielspalte (Target)
@@ -55,10 +58,17 @@ Die konservativen Varianten haben dieselben Zeilenzahlen wie die entsprechenden 
 
 ## 5. Empfohlene Startreihenfolge
 
-1. **Schneller erster Vergleich:** `cls_train_sample.csv` + `cls_val.csv` + `cls_test.csv`
-2. **Analog REG:** `reg_train_sample.csv` + `reg_val.csv` + `reg_test.csv`
-3. **Sensitivitätsvergleich:** `CLS_FINAL` vs. `CLS_FINAL_NO_GROUPS` auf `train_full/val/test`
-4. **Analog REG:** `REG_FINAL` vs. `REG_FINAL_NO_GROUP34` auf `train_full/val/test`
+Wichtig fuer dieses Projekt: Die Unterrichtslogik ist `Train -> Test -> Validation`.
+Das heisst hier bewusst:
+
+- `test` = Modellvergleich
+- `val` = finale Endmessung
+
+1. **Schneller erster Vergleich:** `cls_train_sample.csv` + `cls_test.csv`
+2. **Analog REG:** `reg_train_sample.csv` + `reg_test.csv`
+3. **Sensitivitätsvergleich:** `CLS_FINAL` vs. `CLS_FINAL_NO_GROUPS` auf `train_full/test`
+4. **Analog REG:** `REG_FINAL` vs. `REG_FINAL_NO_GROUP34` auf `train_full/test`
+5. **Finale Endmessung erst ganz am Schluss:** Gewinner einmal auf der passenden `val`-Datei messen, also Basis auf `cls_val.csv` / `reg_val.csv`, konservative Variante auf `cls_val_no_groups.csv` / `reg_val_no_group34.csv`
 
 ## 6. Abschluss
 

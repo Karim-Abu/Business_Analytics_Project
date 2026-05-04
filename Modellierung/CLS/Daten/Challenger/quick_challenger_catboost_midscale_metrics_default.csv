@@ -1,0 +1,2 @@
+model,model_family,run_label,eval_scope,threshold,auc,logloss,accuracy,precision,recall,f1,mcc,tn,fp,fn,tp,fit_seconds,train_rows,eval_rows
+CatBoost Mid-Scale,CatBoost,catboost_mid_scale,full_test,0.5,0.7177052955900657,0.6222118111793129,0.6200711409741677,0.35753734774284035,0.7330740042479059,0.4806502971009674,0.2711622839132506,155246,110395,22370,61436,54.76021489998675,300000,349447

@@ -1,0 +1,14 @@
+candidate_id,model_key,model_label,evaluation_label,source_type,evaluation_variant,prediction_column,n_rows,mse,rmse,mae,median_ae,mape,r2,bias
+always_1__raw,always_1,Always-1 baseline,Always-1 baseline,baseline,raw,prediction__always_1__raw,82403,2.008313,1.41715,0.350752,0.0,11.219003,-0.065256,-0.350752
+train_median__raw,train_median,TRAIN-Median baseline,TRAIN-Median baseline,baseline,raw,prediction__train_median__raw,82403,2.008313,1.41715,0.350752,0.0,11.219003,-0.065256,-0.350752
+train_mean__raw,train_mean,TRAIN-Mean baseline,TRAIN-Mean baseline,baseline,raw,prediction__train_mean__raw,82403,1.885677,1.3732,0.551184,0.33098,34.975494,-0.000207,-0.019772
+ridge__raw,ridge,Ridge Regression,Ridge Regression,model,raw,prediction__ridge__raw,82403,1.757995,1.325894,0.519359,0.30742,34.146917,0.067518,0.021214
+ridge__clipped_at_1,ridge,Ridge Regression,Ridge Regression (clipped at 1),model,clipped_at_1,prediction__ridge__clipped_at_1,82403,1.755547,1.32497,0.514404,0.3056,33.677225,0.068817,0.026169
+random_forest__raw,random_forest,RandomForestRegressor,RandomForestRegressor,model,raw,prediction__random_forest__raw,82403,1.622329,1.273707,0.48619,0.233322,30.941125,0.139479,0.005876
+histgb__raw,histgb,HistGradientBoostingRegressor,HistGradientBoostingRegressor,model,raw,prediction__histgb__raw,82403,1.661815,1.289114,0.496001,0.232114,31.140103,0.118534,-0.013266
+histgb_log1p__raw,histgb_log1p,HistGradientBoostingRegressor (log1p target),HistGradientBoostingRegressor (log1p target),model,raw,prediction__histgb_log1p__raw,82403,1.68276,1.297212,0.437592,0.178204,24.778614,0.107424,-0.10085
+histgb_log1p__clipped_at_1,histgb_log1p,HistGradientBoostingRegressor (log1p target),HistGradientBoostingRegressor (log1p target) (clipped at 1),model,clipped_at_1,prediction__histgb_log1p__clipped_at_1,82403,1.68276,1.297212,0.437592,0.178204,24.778607,0.107424,-0.100849
+lightgbm__raw,lightgbm,LightGBMRegressor,LightGBMRegressor,model,raw,prediction__lightgbm__raw,82403,1.671349,1.292807,0.483786,0.217327,30.628079,0.113477,0.011022
+lightgbm__clipped_at_1,lightgbm,LightGBMRegressor,LightGBMRegressor (clipped at 1),model,clipped_at_1,prediction__lightgbm__clipped_at_1,82403,1.671188,1.292745,0.483683,0.217327,30.619246,0.113562,0.011124
+catboost__raw,catboost,CatBoostRegressor,CatBoostRegressor,model,raw,prediction__catboost__raw,82403,1.755398,1.324915,0.480895,0.226662,30.128524,0.068895,-0.008025
+catboost__clipped_at_1,catboost,CatBoostRegressor,CatBoostRegressor (clipped at 1),model,clipped_at_1,prediction__catboost__clipped_at_1,82403,1.755398,1.324914,0.480893,0.226662,30.128328,0.068895,-0.008023

@@ -1,0 +1,12 @@
+feature_name,dtype,feature_type,family,missing_rate,n_unique,is_constant,near_zero_variance,mutual_information_reg,spearman_corr,notes
+pid_total_events,int64,numeric,conditional_cumulative,0.0,6735,False,False,0.002865,0.046876,
+click_time,int64,numeric,conditional_cumulative,0.0,2673,False,False,0.001067,0.007444,
+basket_time,int64,numeric,conditional_cumulative,0.0,1994,False,False,0.000401,0.054019,
+order_time,int64,numeric,conditional_cumulative,0.0,3717,False,False,0.006854,0.061073,
+group12_order,float64,numeric,conditional_aggregation,0.0,21,False,False,0.011881,0.031548,
+group34_order,float64,numeric,conditional_aggregation,0.0,16,False,False,0.007013,0.058743,
+week_order,float64,numeric,conditional_aggregation,0.0,7,False,False,0.0,-0.003817,
+pid_prob,float64,numeric,conditional_oof,0.0,6723,False,False,0.029149,0.105366,
+availability_likelihood,float64,numeric,conditional_oof,0.0,20,False,False,0.0,-0.01187,
+day_7_qty_mean_oof,float64,numeric,conditional_oof,0.0,39,False,False,0.0,0.006958,
+pid_segment,object,categorical,conditional_segment,0.0,3,False,False,0.004875,-0.015229,

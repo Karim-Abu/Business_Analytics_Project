@@ -1,0 +1,59 @@
+========================================================================
+  FAMILY ABLATION — SUMMARY  (Round 4)
+  Modell: HistGradientBoosting (max_iter=200, depth=5)
+  Evaluiert auf Validation (Tage 71–81), kein Test
+========================================================================
+
+────────────────────────────────────────────────────────────────────────
+  CLS
+────────────────────────────────────────────────────────────────────────
+  Baseline (alle Features): F1=0.1078  PR-AUC=0.4162  ROC-AUC=0.7178  (28 features)
+
+  Leave-One-Family-Out:
+    ohne price_absolute             pr_auc=0.4162  Δ=+0.0000 =  [negligible]
+    ohne price_relative             pr_auc=0.4163  Δ=+0.0001 ↓  [negligible]
+    ohne per_unit                   pr_auc=0.4159  Δ=-0.0003 ↑  [negligible]
+    ohne time                       pr_auc=0.4167  Δ=+0.0005 ↓  [negligible]
+    ohne campaign_ad                pr_auc=0.4162  Δ=+0.0000 =  [negligible]
+    ohne product_master             pr_auc=0.4158  Δ=-0.0004 ↑  [negligible]
+    ohne conditional_history        pr_auc=0.4153  Δ=-0.0009 ↑  [negligible]
+    ohne conditional_oof_segment    pr_auc=0.4130  Δ=-0.0032 ↑  [hurt]
+
+  Add-One-Family (Kern = time):
+    Kern:  F1=0.0000  PR-AUC=0.2481
+    + price_absolute             pr_auc=0.2498  Δ=+0.0017
+    + price_relative             pr_auc=0.2478  Δ=-0.0003
+    + per_unit                   pr_auc=0.2490  Δ=+0.0009
+    + campaign_ad                pr_auc=0.2468  Δ=-0.0013
+    + product_master             pr_auc=0.2487  Δ=+0.0006
+    + conditional_history        pr_auc=0.4121  Δ=+0.1640
+    + conditional_oof_segment    pr_auc=0.4154  Δ=+0.1673
+
+────────────────────────────────────────────────────────────────────────
+  REG
+────────────────────────────────────────────────────────────────────────
+  Baseline (alle Features): MAE=0.5374  MedAE=0.2710  RMSE=1.3643  (26 features)
+
+  Leave-One-Family-Out:
+    ohne price_absolute             mae=0.5378  Δ=+0.0004 ↑  [negligible]
+    ohne price_relative             mae=0.5380  Δ=+0.0006 ↑  [negligible]
+    ohne time                       mae=0.5152  Δ=-0.0222 ↓  [marginal]
+    ohne campaign_ad                mae=0.5365  Δ=-0.0009 ↓  [negligible]
+    ohne product_master             mae=0.5293  Δ=-0.0081 ↓  [marginal]
+    ohne pack_structure             mae=0.5373  Δ=-0.0001 ↓  [negligible]
+    ohne conditional_history        mae=0.5186  Δ=-0.0188 ↓  [marginal]
+    ohne conditional_oof_segment    mae=0.5200  Δ=-0.0174 ↓  [marginal]
+
+  Add-One-Family (Kern = time):
+    Kern:  MAE=0.5217  MedAE=0.2921
+    + price_absolute             mae=0.5278  Δ=+0.0061
+    + price_relative             mae=0.5241  Δ=+0.0024
+    + campaign_ad                mae=0.5253  Δ=+0.0036
+    + product_master             mae=0.5220  Δ=+0.0003
+    + pack_structure             mae=0.5228  Δ=+0.0011
+    + conditional_history        mae=0.5161  Δ=-0.0056
+    + conditional_oof_segment    mae=0.5310  Δ=+0.0093
+
+════════════════════════════════════════════════════════════════════════
+  Nächster Schritt: Wrapper auf reduziertem Set / SHAP
+════════════════════════════════════════════════════════════════════════

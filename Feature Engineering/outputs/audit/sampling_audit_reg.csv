@@ -1,0 +1,15 @@
+feature,value,pop_frac,sample_frac,abs_diff
+quantity_class,1,0.812065,0.812028,3.7e-05
+quantity_class,10+,0.001314,0.001353,3.9e-05
+quantity_class,2,0.13568,0.135692,1.2e-05
+quantity_class,3-5,0.045137,0.045134,3e-06
+quantity_class,6-10,0.005804,0.005793,1e-05
+pid_segment,Head,0.700763,0.700742,2.1e-05
+pid_segment,Mid,0.256395,0.25639,5e-06
+pid_segment,Tail,0.042842,0.042869,2.6e-05
+availability,1,0.956244,0.956159,8.4e-05
+availability,2,0.037195,0.037276,8.1e-05
+availability,3,0.006558,0.006565,7e-06
+availability,4,3e-06,0.0,3e-06
+genericProduct,0,0.848986,0.849053,6.7e-05
+genericProduct,1,0.151014,0.150947,6.7e-05

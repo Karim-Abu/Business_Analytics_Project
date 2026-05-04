@@ -1,0 +1,2 @@
+model,model_family,run_label,eval_scope,threshold,auc,logloss,accuracy,precision,recall,f1,mcc,tn,fp,fn,tp,fit_seconds,train_rows,eval_rows
+LightGBM Quick,LightGBM,lightgbm_quick,quick_test_sample,0.5,0.7133115475446509,0.6656515048423669,0.62038,0.35673880964092475,0.7257943457593194,0.4783576552065298,0.2672937901553369,44632,31386,6576,17406,0.5600417999958154,100000,100000

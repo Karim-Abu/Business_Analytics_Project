@@ -1,0 +1,10 @@
+model_key,model_label,evaluation_label,source_type,prediction_column,evaluation_variant,n_rows,clip_floor,mse,rmse,mae,mape,r2,bias
+constant_baseline,Orange Constant baseline,Orange Constant baseline,baseline_export,Constant baseline (Orange: mean) - see Note for 'always 1',raw,82403,,1.885692,1.373205,0.55096,34.948953,-0.000215,-0.020142
+random_forest,Random Forest,Random Forest,orange_model,Random Forest,raw,82403,,1.737169,1.318017,0.500162,31.349412,0.078565,-0.018854
+gradient_boosting,Gradient Boosting Regressor,Gradient Boosting Regressor,orange_model,Gradient Boosting Regressor (sklearn default),raw,82403,,1.869423,1.367269,0.50803,31.974847,0.008414,-0.011393
+gradient_boosting,Gradient Boosting Regressor,Gradient Boosting Regressor (clipped at 1),orange_model,Gradient Boosting Regressor (sklearn default),clipped_at_1,82403,1.0,1.86894,1.367092,0.507941,31.970507,0.00867,-0.011303
+ridge,Ridge Regression,Ridge Regression,orange_model,Ridge Regression,raw,82403,,1.835978,1.354983,0.546486,35.890361,0.026154,0.015097
+ridge,Ridge Regression,Ridge Regression (clipped at 1),orange_model,Ridge Regression,clipped_at_1,82403,1.0,1.834527,1.354447,0.543513,35.604172,0.026924,0.01807
+always_1,Always-1 baseline,Always-1 baseline,control_baseline,generated::always_1,raw,82403,,2.008313,1.41715,0.350752,11.219003,-0.065256,-0.350752
+test_median,TEST-Median baseline,TEST-Median baseline,control_baseline,generated::test_median,raw,82403,,2.008313,1.41715,0.350752,11.219003,-0.065256,-0.350752
+test_mean,TEST-Mean baseline,TEST-Mean baseline,control_baseline,generated::test_mean,raw,82403,,1.885286,1.373057,0.563157,36.394656,0.0,0.0

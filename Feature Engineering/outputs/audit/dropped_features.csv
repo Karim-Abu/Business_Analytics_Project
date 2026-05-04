@@ -1,0 +1,11 @@
+feature,scope,reason
+revenue,CLS+REG,Leakage: revenue = price × quantity
+click,CLS,Leakage: click=1 ⇒ order=0
+basket,CLS,Leakage: basket=1 ⇒ order=0
+lineID,CLS+REG,"Identifier, no information"
+quantity,CLS,"Target-derived, leakage for Stage 1"
+quantity_class,CLS+REG-input,Target-derived
+qty_suspicious,CLS+REG,"QA flag, not a model feature"
+pid_likelihood,CLS+REG,Deprecated: redundant with pid_prob
+num_pid_order,REG,Leakage: sums quantity (= REG target)
+order,REG,Constant 1 in Stage-2 subset

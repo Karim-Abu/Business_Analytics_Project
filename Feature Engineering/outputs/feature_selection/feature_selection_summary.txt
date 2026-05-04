@@ -1,0 +1,320 @@
+========================================================================
+  FEATURE SELECTION — FILTER REPORT SUMMARY
+  MI subsample: 50,000  |  Corr threshold: 0.95
+  Sampling fracs in config: CLS=0.3, REG=0.3
+  HINWEIS: Feature Selection läuft auf vollen Train-Matrizen,
+           nicht auf gesampelten Daten.
+========================================================================
+
+────────────────────────────────────────────────────────────────────────
+  CLS — Klassifikation (order)
+────────────────────────────────────────────────────────────────────────
+
+  ▸ BASE (33 Features)
+    Konstant:         0  (—)
+    Near-Zero-Var.:   3  (competitorPrice_missing, pack_n, is_discount)
+    High Missing:     0  (—)
+    Redundant Pairs:  6
+      is_lower_price  ↔  is_greater_discount  (r=1.0000)
+      price_per_unit  ↔  competitorPrice_per_unit  (r=0.9810)
+      rrp_per_unit  ↔  competitorPrice_per_unit  (r=0.9797)
+      rrp_per_unit  ↔  price_per_unit  (r=0.9742)
+      rrp  ↔  competitorPrice  (r=0.9667)
+    Top-5 MI:
+      availability                         MI=0.005753
+      day                                  MI=0.004920
+      category_norm                        MI=0.004388
+      day_30                               MI=0.004155
+      salesIndex                           MI=0.003255
+    Bottom-3 MI:
+      price                                MI=0.000000
+      genericProduct                       MI=0.000000
+      manufacturer_freq                    MI=0.000000
+
+  ▸ EXPANDED (35 Features)
+    Konstant:         0  (—)
+    Near-Zero-Var.:   3  (competitorPrice_missing, pack_n, is_discount)
+    High Missing:     0  (—)
+    Redundant Pairs:  6
+      is_lower_price  ↔  is_greater_discount  (r=1.0000)
+      price_per_unit  ↔  competitorPrice_per_unit  (r=0.9810)
+      rrp_per_unit  ↔  competitorPrice_per_unit  (r=0.9797)
+      rrp_per_unit  ↔  price_per_unit  (r=0.9742)
+      rrp  ↔  competitorPrice  (r=0.9667)
+    Top-5 MI:
+      availability                         MI=0.005753
+      day                                  MI=0.004920
+      category_norm                        MI=0.004388
+      day_30                               MI=0.004155
+      salesIndex                           MI=0.003255
+    Bottom-3 MI:
+      price                                MI=0.000000
+      genericProduct                       MI=0.000000
+      manufacturer_freq                    MI=0.000000
+
+  ▸ CONDITIONAL (12 Features)
+    Konstant:         0  (—)
+    Near-Zero-Var.:   0  (—)
+    High Missing:     0  (—)
+    Redundant Pairs:  2
+      order_time  ↔  num_pid_order  (r=1.0000)
+      pid_total_events  ↔  basket_time  (r=0.9666)
+    Top-5 MI:
+      pid_prob                             MI=0.045484
+      basket_time                          MI=0.020915
+      order_time                           MI=0.020056
+      num_pid_order                        MI=0.017209
+      group12_order                        MI=0.007661
+    Bottom-3 MI:
+      week_order                           MI=0.000712
+      day_7_likelihood                     MI=0.002410
+      click_time                           MI=0.002803
+
+────────────────────────────────────────────────────────────────────────
+  REG — Regression (quantity)
+────────────────────────────────────────────────────────────────────────
+
+  ▸ BASE (33 Features)
+    Konstant:         0  (—)
+    Near-Zero-Var.:   4  (availability, competitorPrice_missing, pack_n, is_discount)
+    High Missing:     0  (—)
+    Redundant Pairs:  6
+      is_lower_price  ↔  is_greater_discount  (r=1.0000)
+      rrp_per_unit  ↔  competitorPrice_per_unit  (r=0.9852)
+      price_per_unit  ↔  competitorPrice_per_unit  (r=0.9806)
+      rrp_per_unit  ↔  price_per_unit  (r=0.9737)
+      rrp  ↔  competitorPrice  (r=0.9697)
+    Top-5 MI:
+      category_norm                        MI=0.037719
+      day                                  MI=0.014051
+      pharmForm_norm                       MI=0.013963
+      day_7                                MI=0.004554
+      group34                              MI=0.003979
+    Bottom-3 MI:
+      adFlag                               MI=0.000000
+      rrp                                  MI=0.000000
+      competitorPrice_missing              MI=0.000000
+
+  ▸ EXPANDED (35 Features)
+    Konstant:         0  (—)
+    Near-Zero-Var.:   4  (availability, competitorPrice_missing, pack_n, is_discount)
+    High Missing:     0  (—)
+    Redundant Pairs:  6
+      is_lower_price  ↔  is_greater_discount  (r=1.0000)
+      rrp_per_unit  ↔  competitorPrice_per_unit  (r=0.9852)
+      price_per_unit  ↔  competitorPrice_per_unit  (r=0.9806)
+      rrp_per_unit  ↔  price_per_unit  (r=0.9737)
+      rrp  ↔  competitorPrice  (r=0.9697)
+    Top-5 MI:
+      category_norm                        MI=0.037719
+      day                                  MI=0.014051
+      pharmForm_norm                       MI=0.013963
+      day_7                                MI=0.004554
+      group34                              MI=0.003979
+    Bottom-3 MI:
+      adFlag                               MI=0.000000
+      rrp                                  MI=0.000000
+      competitorPrice_missing              MI=0.000000
+
+  ▸ CONDITIONAL (11 Features)
+    Konstant:         0  (—)
+    Near-Zero-Var.:   0  (—)
+    High Missing:     0  (—)
+    Redundant Pairs:  1
+      availability_likelihood  ↔  day_7_qty_mean_oof  (r=-0.9681)
+    Top-5 MI:
+      pid_prob                             MI=0.029149
+      group12_order                        MI=0.011881
+      group34_order                        MI=0.007013
+      order_time                           MI=0.006854
+      pid_segment                          MI=0.004875
+    Bottom-3 MI:
+      week_order                           MI=0.000000
+      availability_likelihood              MI=0.000000
+      day_7_qty_mean_oof                   MI=0.000000
+
+────────────────────────────────────────────────────────────────────────
+  FEATURE-FAMILIEN
+────────────────────────────────────────────────────────────────────────
+
+  price_absolute
+    Features:    4
+    avg MI CLS:  0.000710
+    avg MI REG:  0.000337
+    Redundanz:   competitorPrice, price, rrp
+    Bewertung:   has_redundancy; 1 NZV
+
+  price_relative
+    Features:    9
+    avg MI CLS:  0.000250
+    avg MI REG:  0.000805
+    Redundanz:   is_greater_discount, is_lower_price
+    Bewertung:   has_redundancy; 1 NZV
+
+  per_unit
+    Features:    3
+    avg MI CLS:  0.000353
+    avg MI REG:  0.000000
+    Redundanz:   competitorPrice_per_unit, price_per_unit, rrp_per_unit
+    Bewertung:   has_redundancy
+
+  time
+    Features:    4
+    avg MI CLS:  0.002786
+    avg MI REG:  0.006170
+    Bewertung:   CLS-relevant; REG-relevant
+
+  campaign_ad
+    Features:    4
+    avg MI CLS:  0.001397
+    avg MI REG:  0.001152
+    Bewertung:   neutral
+
+  product_master
+    Features:    7
+    avg MI CLS:  0.001727
+    avg MI REG:  0.008753
+    Bewertung:   REG-relevant
+
+  pack_structure
+    Features:    4
+    avg MI CLS:  0.000000
+    avg MI REG:  0.000413
+    Bewertung:   1 NZV
+
+  conditional_cumulative
+    Features:    5
+    avg MI CLS:  0.013396
+    avg MI REG:  0.002797
+    Redundanz:   basket_time, num_pid_order, order_time, pid_total_events
+    Bewertung:   CLS-relevant; REG-relevant; has_redundancy
+
+  conditional_aggregation
+    Features:    3
+    avg MI CLS:  0.004316
+    avg MI REG:  0.006298
+    Bewertung:   CLS-relevant; REG-relevant
+
+  conditional_oof
+    Features:    3
+    avg MI CLS:  0.017092
+    avg MI REG:  0.009716
+    Redundanz:   availability_likelihood, day_7_qty_mean_oof
+    Bewertung:   CLS-relevant; REG-relevant; has_redundancy
+
+  conditional_segment
+    Features:    1
+    avg MI CLS:  0.002861
+    avg MI REG:  0.004875
+    Bewertung:   CLS-relevant; REG-relevant
+
+========================================================================
+  SAFE vs CONDITIONAL — Vergleich
+========================================================================
+
+── CLS ──────────────────────────────────────────
+  SAFE (35 features)  avg MI=0.000999  max MI=0.005753 (availability)
+  COND (12 features)  avg MI=0.011172  max MI=0.045484 (pid_prob)
+    Signal (MI>0.002):  pid_total_events, click_time, basket_time, order_time, num_pid_order, group12_order, group34_order, pid_prob, availability_likelihood, day_7_likelihood, pid_segment
+    Schwach (MI≤0.002): week_order
+
+── REG ──────────────────────────────────────────
+  SAFE (35 features)  avg MI=0.002880  max MI=0.037719 (category_norm)
+  COND (11 features)  avg MI=0.005828  max MI=0.029149 (pid_prob)
+    Signal (MI>0.002):  pid_total_events, order_time, group12_order, group34_order, pid_prob, pid_segment
+    Schwach (MI≤0.002): click_time, basket_time, week_order, availability_likelihood, day_7_qty_mean_oof
+
+
+════════════════════════════════════════════════════════════════════════
+  EMPFEHLUNGEN (Filter-basiert, keine finale Entscheidung)
+════════════════════════════════════════════════════════════════════════
+
+  → Basiert ausschliesslich auf Filter-Methoden.
+  → Wrapper/Embedded (RFECV, SHAP, Permutation) folgen in Runde 4.
+  → Finale Drop-Entscheide erst nach Wrapper-Runde.
+
+  CLS:
+    Wahrscheinlich stark (Top-10 MI):
+      pid_prob                             MI=0.045484
+      basket_time                          MI=0.020915
+      order_time                           MI=0.020056
+      num_pid_order                        MI=0.017209
+      group12_order                        MI=0.007661
+      pid_total_events                     MI=0.005996
+      availability                         MI=0.005753
+      day                                  MI=0.004920
+      group34_order                        MI=0.004575
+      category_norm                        MI=0.004388
+    Wahrscheinlich Drop-Kandidaten:
+      competitorPrice_missing              (NEAR_ZERO_VAR)
+      pack_n                               (NEAR_ZERO_VAR)
+      is_discount                          (NEAR_ZERO_VAR)
+    Schwaches Signal (MI<0.0005):
+      price                                MI=0.000000
+      rrp                                  MI=0.000349
+      genericProduct                       MI=0.000000
+      campaignIndex_norm                   MI=0.000034
+      manufacturer_freq                    MI=0.000000
+      group12                              MI=0.000303
+      group34                              MI=0.000145
+      is_multipack                         MI=0.000000
+      pack_n                               MI=0.000000
+      pack_size                            MI=0.000000
+      pack_total_size                      MI=0.000000
+      price_diff                           MI=0.000000
+      price_discount                       MI=0.000000
+      competitorPrice_discount             MI=0.000000
+      price_discount_diff                  MI=0.000000
+      is_lower_price                       MI=0.000000
+      rrp_per_unit                         MI=0.000149
+      competitorPrice_per_unit             MI=0.000000
+      price_diff_bin                       MI=0.000218
+      discount_bin                         MI=0.000252
+    Für Wrapper-Runde empfohlen (44/47):
+      day, day_7, day_14, day_30, adFlag, availability, price, rrp, competitorPrice, genericProduct, salesIndex, category_norm, pharmForm_norm, campaignIndex_norm, has_campaign, manufacturer_freq, group12, group34, is_multipack, pack_size, pack_total_size, price_diff, price_discount, competitorPrice_discount, price_discount_diff, is_lower_price, is_greater_discount, rrp_per_unit, price_per_unit, competitorPrice_per_unit, price_diff_bin, discount_bin, pid_total_events, click_time, basket_time, order_time, num_pid_order, group12_order, group34_order, week_order, pid_prob, availability_likelihood, day_7_likelihood, pid_segment
+
+  REG:
+    Wahrscheinlich stark (Top-10 MI):
+      category_norm                        MI=0.037719
+      pid_prob                             MI=0.029149
+      day                                  MI=0.014051
+      pharmForm_norm                       MI=0.013963
+      group12_order                        MI=0.011881
+      group34_order                        MI=0.007013
+      order_time                           MI=0.006854
+      pid_segment                          MI=0.004875
+      day_7                                MI=0.004554
+      group34                              MI=0.003979
+    Wahrscheinlich Drop-Kandidaten:
+      availability                         (NEAR_ZERO_VAR)
+      competitorPrice_missing              (NEAR_ZERO_VAR)
+      pack_n                               (NEAR_ZERO_VAR)
+      is_discount                          (NEAR_ZERO_VAR)
+    Schwaches Signal (MI<0.0005):
+      adFlag                               MI=0.000000
+      rrp                                  MI=0.000000
+      competitorPrice_missing              MI=0.000000
+      has_campaign                         MI=0.000000
+      manufacturer_freq                    MI=0.000455
+      group12                              MI=0.000000
+      pack_n                               MI=0.000000
+      pack_size                            MI=0.000000
+      pack_total_size                      MI=0.000000
+      price_discount                       MI=0.000360
+      competitorPrice_discount             MI=0.000000
+      price_discount_diff                  MI=0.000000
+      is_lower_price                       MI=0.000000
+      is_greater_discount                  MI=0.000000
+      rrp_per_unit                         MI=0.000000
+      price_per_unit                       MI=0.000000
+      competitorPrice_per_unit             MI=0.000000
+      basket_time                          MI=0.000401
+      week_order                           MI=0.000000
+      availability_likelihood              MI=0.000000
+      day_7_qty_mean_oof                   MI=0.000000
+    Für Wrapper-Runde empfohlen (42/46):
+      day, day_7, day_14, day_30, adFlag, price, rrp, competitorPrice, genericProduct, salesIndex, category_norm, pharmForm_norm, campaignIndex_norm, has_campaign, manufacturer_freq, group12, group34, is_multipack, pack_size, pack_total_size, price_diff, price_discount, competitorPrice_discount, price_discount_diff, is_lower_price, is_greater_discount, rrp_per_unit, price_per_unit, competitorPrice_per_unit, price_diff_bin, discount_bin, pid_total_events, click_time, basket_time, order_time, group12_order, group34_order, week_order, pid_prob, availability_likelihood, day_7_qty_mean_oof, pid_segment
+
+========================================================================
+  Nächster Schritt: Wrapper-/Embedded-Runde (RFECV, SHAP)
+========================================================================

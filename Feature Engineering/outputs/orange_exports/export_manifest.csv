@@ -1,0 +1,15 @@
+file_name,stage,split,n_rows,n_features,target_name,feature_set_name,sampling_used,sampling_frac,build_mode,source_pipeline,reg_mask_applied,created_at
+cls_train_full.csv,CLS,train_full,1521260,28,order,CLS_FINAL,False,,safe_plus_conditional,main_build_datasets.py,False,2026-04-28T15:44:08
+cls_train_sample.csv,CLS,train_sample,456377,28,order,CLS_FINAL,True,0.3,safe_plus_conditional,main_build_datasets.py,False,2026-04-28T15:44:08
+cls_test.csv,CLS,test,349447,28,order,CLS_FINAL,False,,safe_plus_conditional,main_build_datasets.py,False,2026-04-28T15:44:08
+cls_val.csv,CLS,val,363483,28,order,CLS_FINAL,False,,safe_plus_conditional,main_build_datasets.py,False,2026-04-28T15:44:08
+reg_train_full.csv,REG,train_full,332546,26,quantity,REG_FINAL,False,,safe_plus_conditional,main_build_datasets.py,True,2026-04-28T15:44:08
+reg_train_sample.csv,REG,train_sample,99770,26,quantity,REG_FINAL,True,0.3,safe_plus_conditional,main_build_datasets.py,True,2026-04-28T15:44:08
+reg_test.csv,REG,test,82403,26,quantity,REG_FINAL,False,,safe_plus_conditional,main_build_datasets.py,True,2026-04-28T15:44:08
+reg_val.csv,REG,val,87746,26,quantity,REG_FINAL,False,,safe_plus_conditional,main_build_datasets.py,True,2026-04-28T15:44:08
+cls_train_full_no_groups.csv,CLS,train_full,1521260,26,order,CLS_FINAL_NO_GROUPS,False,,safe_plus_conditional,main_build_datasets.py,False,2026-04-28T15:44:08
+cls_val_no_groups.csv,CLS,val,363483,26,order,CLS_FINAL_NO_GROUPS,False,,safe_plus_conditional,main_build_datasets.py,False,2026-04-28T15:44:08
+cls_test_no_groups.csv,CLS,test,349447,26,order,CLS_FINAL_NO_GROUPS,False,,safe_plus_conditional,main_build_datasets.py,False,2026-04-28T15:44:08
+reg_train_full_no_group34.csv,REG,train_full,332546,25,quantity,REG_FINAL_NO_GROUP34,False,,safe_plus_conditional,main_build_datasets.py,True,2026-04-28T15:44:08
+reg_val_no_group34.csv,REG,val,87746,25,quantity,REG_FINAL_NO_GROUP34,False,,safe_plus_conditional,main_build_datasets.py,True,2026-04-28T15:44:08
+reg_test_no_group34.csv,REG,test,82403,25,quantity,REG_FINAL_NO_GROUP34,False,,safe_plus_conditional,main_build_datasets.py,True,2026-04-28T15:44:08

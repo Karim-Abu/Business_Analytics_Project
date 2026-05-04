@@ -1,0 +1,37 @@
+model_key,model_label,evaluation_label,source_type,prediction_column,evaluation_variant,segment,segment_description,n_rows,mae,rmse,bias
+constant_baseline,Orange Constant baseline,Orange Constant baseline,baseline_export,Constant baseline (Orange: mean) - see Note for 'always 1',raw,all,Alle Beobachtungen,82403,0.55096,1.373205,-0.020142
+constant_baseline,Orange Constant baseline,Orange Constant baseline,baseline_export,Constant baseline (Orange: mean) - see Note for 'always 1',raw,quantity_eq_1,Nur quantity = 1,66152,0.33061,0.33061,0.33061
+constant_baseline,Orange Constant baseline,Orange Constant baseline,baseline_export,Constant baseline (Orange: mean) - see Note for 'always 1',raw,quantity_gt_1,Nur quantity > 1,16251,1.447927,3.019393,-1.447927
+constant_baseline,Orange Constant baseline,Orange Constant baseline,baseline_export,Constant baseline (Orange: mean) - see Note for 'always 1',raw,quantity_ge_3,Nur quantity >= 3,4612,3.412668,5.567157,-3.412668
+random_forest,Random Forest,Random Forest,orange_model,Random Forest,raw,all,Alle Beobachtungen,82403,0.500162,1.318017,-0.018854
+random_forest,Random Forest,Random Forest,orange_model,Random Forest,raw,quantity_eq_1,Nur quantity = 1,66152,0.290759,0.407796,0.290759
+random_forest,Random Forest,Random Forest,orange_model,Random Forest,raw,quantity_gt_1,Nur quantity > 1,16251,1.352565,2.8516,-1.27918
+random_forest,Random Forest,Random Forest,orange_model,Random Forest,raw,quantity_ge_3,Nur quantity >= 3,4612,3.089752,5.22119,-3.039953
+gradient_boosting,Gradient Boosting Regressor,Gradient Boosting Regressor,orange_model,Gradient Boosting Regressor (sklearn default),raw,all,Alle Beobachtungen,82403,0.50803,1.367269,-0.011393
+gradient_boosting,Gradient Boosting Regressor,Gradient Boosting Regressor,orange_model,Gradient Boosting Regressor (sklearn default),raw,quantity_eq_1,Nur quantity = 1,66152,0.300021,0.445656,0.299973
+gradient_boosting,Gradient Boosting Regressor,Gradient Boosting Regressor,orange_model,Gradient Boosting Regressor (sklearn default),raw,quantity_gt_1,Nur quantity > 1,16251,1.354762,2.944607,-1.278852
+gradient_boosting,Gradient Boosting Regressor,Gradient Boosting Regressor,orange_model,Gradient Boosting Regressor (sklearn default),raw,quantity_ge_3,Nur quantity >= 3,4612,3.157427,5.413854,-3.021694
+gradient_boosting,Gradient Boosting Regressor,Gradient Boosting Regressor (clipped at 1),orange_model,Gradient Boosting Regressor (sklearn default),clipped_at_1,all,Alle Beobachtungen,82403,0.507941,1.367092,-0.011303
+gradient_boosting,Gradient Boosting Regressor,Gradient Boosting Regressor (clipped at 1),orange_model,Gradient Boosting Regressor (sklearn default),clipped_at_1,quantity_eq_1,Nur quantity = 1,66152,0.299997,0.445614,0.299997
+gradient_boosting,Gradient Boosting Regressor,Gradient Boosting Regressor (clipped at 1),orange_model,Gradient Boosting Regressor (sklearn default),clipped_at_1,quantity_gt_1,Nur quantity > 1,16251,1.354407,2.944217,-1.278497
+gradient_boosting,Gradient Boosting Regressor,Gradient Boosting Regressor (clipped at 1),orange_model,Gradient Boosting Regressor (sklearn default),clipped_at_1,quantity_ge_3,Nur quantity >= 3,4612,3.156658,5.413296,-3.020926
+ridge,Ridge Regression,Ridge Regression,orange_model,Ridge Regression,raw,all,Alle Beobachtungen,82403,0.546486,1.354983,0.015097
+ridge,Ridge Regression,Ridge Regression,orange_model,Ridge Regression,raw,quantity_eq_1,Nur quantity = 1,66152,0.353125,0.398247,0.346234
+ridge,Ridge Regression,Ridge Regression,orange_model,Ridge Regression,raw,quantity_gt_1,Nur quantity > 1,16251,1.333592,2.943464,-1.332842
+ridge,Ridge Regression,Ridge Regression,orange_model,Ridge Regression,raw,quantity_ge_3,Nur quantity >= 3,4612,3.23341,5.437808,-3.23341
+ridge,Ridge Regression,Ridge Regression (clipped at 1),orange_model,Ridge Regression,clipped_at_1,all,Alle Beobachtungen,82403,0.543513,1.354447,0.01807
+ridge,Ridge Regression,Ridge Regression (clipped at 1),orange_model,Ridge Regression,clipped_at_1,quantity_eq_1,Nur quantity = 1,66152,0.349679,0.396855,0.349679
+ridge,Ridge Regression,Ridge Regression (clipped at 1),orange_model,Ridge Regression,clipped_at_1,quantity_gt_1,Nur quantity > 1,16251,1.332541,2.942979,-1.331791
+ridge,Ridge Regression,Ridge Regression (clipped at 1),orange_model,Ridge Regression,clipped_at_1,quantity_ge_3,Nur quantity >= 3,4612,3.232644,5.437481,-3.232644
+always_1,Always-1 baseline,Always-1 baseline,control_baseline,generated::always_1,raw,all,Alle Beobachtungen,82403,0.350752,1.41715,-0.350752
+always_1,Always-1 baseline,Always-1 baseline,control_baseline,generated::always_1,raw,quantity_eq_1,Nur quantity = 1,66152,0.0,0.0,0.0
+always_1,Always-1 baseline,Always-1 baseline,control_baseline,generated::always_1,raw,quantity_gt_1,Nur quantity > 1,16251,1.778537,3.191149,-1.778537
+always_1,Always-1 baseline,Always-1 baseline,control_baseline,generated::always_1,raw,quantity_ge_3,Nur quantity >= 3,4612,3.743278,5.775731,-3.743278
+test_median,TEST-Median baseline,TEST-Median baseline,control_baseline,generated::test_median,raw,all,Alle Beobachtungen,82403,0.350752,1.41715,-0.350752
+test_median,TEST-Median baseline,TEST-Median baseline,control_baseline,generated::test_median,raw,quantity_eq_1,Nur quantity = 1,66152,0.0,0.0,0.0
+test_median,TEST-Median baseline,TEST-Median baseline,control_baseline,generated::test_median,raw,quantity_gt_1,Nur quantity > 1,16251,1.778537,3.191149,-1.778537
+test_median,TEST-Median baseline,TEST-Median baseline,control_baseline,generated::test_median,raw,quantity_ge_3,Nur quantity >= 3,4612,3.743278,5.775731,-3.743278
+test_mean,TEST-Mean baseline,TEST-Mean baseline,control_baseline,generated::test_mean,raw,all,Alle Beobachtungen,82403,0.563157,1.373057,0.0
+test_mean,TEST-Mean baseline,TEST-Mean baseline,control_baseline,generated::test_mean,raw,quantity_eq_1,Nur quantity = 1,66152,0.350752,0.350752,0.350752
+test_mean,TEST-Mean baseline,TEST-Mean baseline,control_baseline,generated::test_mean,raw,quantity_gt_1,Nur quantity > 1,16251,1.427785,3.009786,-1.427785
+test_mean,TEST-Mean baseline,TEST-Mean baseline,control_baseline,generated::test_mean,raw,quantity_ge_3,Nur quantity >= 3,4612,3.392527,5.554833,-3.392527

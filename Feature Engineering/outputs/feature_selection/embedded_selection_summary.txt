@@ -1,0 +1,132 @@
+========================================================================
+  EMBEDDED SELECTION — SUMMARY  (Round 4)
+  Methoden: L1 LogReg, ElasticNet LogReg, HistGBC  (CLS)
+  Methoden: Lasso, ElasticNet, HistGBR             (REG)
+  Linear-Modelle: Subsample 200,000 Zeilen aus Train
+  Tree-Modelle: voller Train
+  Train → Val, kein Test, kein Random-CV
+========================================================================
+
+────────────────────────────────────────────────────────────────────────
+  CLS
+────────────────────────────────────────────────────────────────────────
+
+  ▸ SAFE_PRUNED (18 features)
+    L1_LogReg                  F1=0.0000  PR-AUC=0.2405  ROC-AUC=0.5083
+      Selected: 18/18 features
+      Top-5 Importance:
+        day_7                           imp=0.028615  coef=0.0286
+        availability                    imp=0.021466  coef=-0.0215
+        day_14                          imp=0.011404  coef=-0.0114
+        adFlag                          imp=0.008360  coef=-0.0084
+        day                             imp=0.006703  coef=-0.0067
+    ElasticNet_LogReg          F1=0.0000  PR-AUC=0.2443  ROC-AUC=0.5105
+      Selected: 18/18 features
+      Top-5 Importance:
+        availability                    imp=0.069112  coef=-0.0691
+        day_7                           imp=0.022350  coef=0.0223
+        has_campaign                    imp=0.020019  coef=-0.0200
+        day_14                          imp=0.011972  coef=-0.0120
+        salesIndex                      imp=0.011156  coef=-0.0112
+    HistGBC                    F1=0.0000  PR-AUC=0.2511  ROC-AUC=0.5223
+      Selected: 13/18 features
+      Top-5 Importance:
+        day                             imp=0.616993  
+        day_30                          imp=0.178894  
+        day_7                           imp=0.112710  
+        day_14                          imp=0.035462  
+        price_per_unit                  imp=0.009474  
+      Dropped (coef≈0): adFlag, availability, salesIndex, has_campaign, is_greater_discount
+
+  ▸ FULL_PRUNED (28 features)
+    L1_LogReg                  F1=0.1419  PR-AUC=0.4092  ROC-AUC=0.7078
+      Selected: 28/28 features
+      Top-5 Importance:
+        pid_prob                        imp=3.863068  coef=3.8631
+        day_7_likelihood                imp=2.129297  coef=-2.1293
+        group12_order                   imp=1.592232  coef=1.5922
+        availability_likelihood         imp=0.955723  coef=-0.9557
+        group34_order                   imp=0.465657  coef=0.4657
+    ElasticNet_LogReg          F1=0.1414  PR-AUC=0.3760  ROC-AUC=0.6591
+      Selected: 28/28 features
+      Top-5 Importance:
+        salesIndex                      imp=0.012957  coef=-0.0130
+        day                             imp=0.008064  coef=-0.0081
+        discount_bin                    imp=0.006341  coef=-0.0063
+        price_diff_bin                  imp=0.005239  coef=-0.0052
+        day_14                          imp=0.004543  coef=-0.0045
+    HistGBC                    F1=0.1095  PR-AUC=0.4165  ROC-AUC=0.7180
+      Selected: 17/28 features
+      Top-5 Importance:
+        pid_prob                        imp=0.649559  
+        order_time                      imp=0.123185  
+        click_time                      imp=0.087375  
+        basket_time                     imp=0.065515  
+        availability_likelihood         imp=0.018746  
+      Dropped (coef≈0): day_7, day_14, adFlag, availability, salesIndex, has_campaign, group12, group34, is_greater_discount, price_diff_bin…
+
+────────────────────────────────────────────────────────────────────────
+  REG
+────────────────────────────────────────────────────────────────────────
+
+  ▸ SAFE_PRUNED (18 features)
+    Lasso                      MAE=0.5316  MedAE=0.3131  RMSE=1.3738
+      Selected: 9/18 features
+      Top-5 Importance:
+        day_14                          imp=0.006574  coef=-0.0066
+        day                             imp=0.001420  coef=-0.0014
+        day_7                           imp=0.001150  coef=0.0011
+        day_30                          imp=0.001054  coef=-0.0011
+        group34                         imp=0.000116  coef=-0.0001
+      Dropped (coef≈0): price, genericProduct, campaignIndex_norm, manufacturer_freq, is_multipack, price_diff, price_discount, price_diff_bin, discount_bin
+    ElasticNet                 MAE=0.5316  MedAE=0.3174  RMSE=1.3738
+      Selected: 12/18 features
+      Top-5 Importance:
+        day_14                          imp=0.007425  coef=-0.0074
+        day_7                           imp=0.003510  coef=0.0035
+        day                             imp=0.001417  coef=-0.0014
+        day_30                          imp=0.001057  coef=-0.0011
+        group34                         imp=0.000665  coef=-0.0007
+      Dropped (coef≈0): price, genericProduct, campaignIndex_norm, manufacturer_freq, is_multipack, price_discount
+    HistGBR                    MAE=0.5182  MedAE=0.2733  RMSE=1.3773
+      Selected: 13/18 features
+      Top-5 Importance:
+        day                             imp=0.402214  
+        manufacturer_freq               imp=0.134750  
+        day_14                          imp=0.082970  
+        competitorPrice                 imp=0.067235  
+        category_norm                   imp=0.060069  
+      Dropped (coef≈0): genericProduct, salesIndex, campaignIndex_norm, price_diff_bin, discount_bin
+
+  ▸ FULL_PRUNED (26 features)
+    Lasso                      MAE=0.5459  MedAE=0.3376  RMSE=1.3691
+      Selected: 11/26 features
+      Top-5 Importance:
+        day_14                          imp=0.005387  coef=-0.0054
+        pid_segment                     imp=0.004518  coef=0.0045
+        order_time                      imp=0.000492  coef=0.0005
+        click_time                      imp=0.000445  coef=-0.0004
+        group34                         imp=0.000257  coef=-0.0003
+      Dropped (coef≈0): day, day_7, price, genericProduct, campaignIndex_norm, manufacturer_freq, is_multipack, price_diff, price_discount, price_diff_bin…
+    ElasticNet                 MAE=0.5475  MedAE=0.3457  RMSE=1.3690
+      Selected: 14/26 features
+      Top-5 Importance:
+        pid_segment                     imp=0.022523  coef=0.0225
+        day_14                          imp=0.005781  coef=-0.0058
+        group34                         imp=0.000803  coef=-0.0008
+        order_time                      imp=0.000542  coef=0.0005
+        click_time                      imp=0.000387  coef=-0.0004
+      Dropped (coef≈0): day, day_7, price, genericProduct, campaignIndex_norm, manufacturer_freq, is_multipack, price_diff, price_discount, group12_order…
+    HistGBR                    MAE=0.5374  MedAE=0.2783  RMSE=1.3605
+      Selected: 20/26 features
+      Top-5 Importance:
+        pid_prob                        imp=0.150332  
+        group12_order                   imp=0.140616  
+        group34_order                   imp=0.108295  
+        day                             imp=0.107330  
+        day_30                          imp=0.095600  
+      Dropped (coef≈0): genericProduct, salesIndex, campaignIndex_norm, is_multipack, price_diff_bin, discount_bin
+
+════════════════════════════════════════════════════════════════════════
+  Nächster Schritt: Family Ablation → Wrapper-Vorbereitung
+════════════════════════════════════════════════════════════════════════

@@ -1,0 +1,12 @@
+family_name,n_features,avg_missing_rate,avg_mi_cls,avg_mi_reg,redundant_features,assessment,features
+price_absolute,4,0.0077,0.00071,0.000337,"competitorPrice, price, rrp",has_redundancy; 1 NZV,"price, rrp, competitorPrice, competitorPrice_missing"
+price_relative,9,0.017,0.00025,0.000805,"is_greater_discount, is_lower_price",has_redundancy; 1 NZV,"price_diff, price_discount, competitorPrice_discount, price_discount_diff, is_lower_price, is_discount, is_greater_discount, price_diff_bin, discount_bin"
+per_unit,3,0.0103,0.000353,0.0,"competitorPrice_per_unit, price_per_unit, rrp_per_unit",has_redundancy,"rrp_per_unit, price_per_unit, competitorPrice_per_unit"
+time,4,0.0,0.002786,0.00617,,CLS-relevant; REG-relevant,"day, day_7, day_14, day_30"
+campaign_ad,4,0.0,0.001397,0.001152,,neutral,"adFlag, campaignIndex_norm, has_campaign, salesIndex"
+product_master,7,0.0,0.001727,0.008753,,REG-relevant,"genericProduct, category_norm, pharmForm_norm, manufacturer_freq, group12, group34, availability"
+pack_structure,4,0.0,0.0,0.000413,,1 NZV,"is_multipack, pack_n, pack_size, pack_total_size"
+conditional_cumulative,5,0.0,0.013396,0.002797,"basket_time, num_pid_order, order_time, pid_total_events",CLS-relevant; REG-relevant; has_redundancy,"pid_total_events, click_time, basket_time, order_time, num_pid_order"
+conditional_aggregation,3,0.0,0.004316,0.006298,,CLS-relevant; REG-relevant,"group12_order, group34_order, week_order"
+conditional_oof,3,0.0,0.017092,0.009716,"availability_likelihood, day_7_qty_mean_oof",CLS-relevant; REG-relevant; has_redundancy,"pid_prob, availability_likelihood, day_7_likelihood, day_7_qty_mean_oof"
+conditional_segment,1,0.0,0.002861,0.004875,,CLS-relevant; REG-relevant,pid_segment

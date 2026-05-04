@@ -1,0 +1,53 @@
+candidate_id,model_key,model_label,evaluation_label,source_type,evaluation_variant,segment,n_rows,mae,rmse,median_ae,bias
+always_1__raw,always_1,Always-1 baseline,Always-1 baseline,baseline,raw,all,82403,0.350752,1.41715,0.0,-0.350752
+always_1__raw,always_1,Always-1 baseline,Always-1 baseline,baseline,raw,quantity_eq_1,66152,0.0,0.0,0.0,0.0
+always_1__raw,always_1,Always-1 baseline,Always-1 baseline,baseline,raw,quantity_gt_1,16251,1.778537,3.191149,1.0,-1.778537
+always_1__raw,always_1,Always-1 baseline,Always-1 baseline,baseline,raw,quantity_ge_3,4612,3.743278,5.775731,3.0,-3.743278
+train_median__raw,train_median,TRAIN-Median baseline,TRAIN-Median baseline,baseline,raw,all,82403,0.350752,1.41715,0.0,-0.350752
+train_median__raw,train_median,TRAIN-Median baseline,TRAIN-Median baseline,baseline,raw,quantity_eq_1,66152,0.0,0.0,0.0,0.0
+train_median__raw,train_median,TRAIN-Median baseline,TRAIN-Median baseline,baseline,raw,quantity_gt_1,16251,1.778537,3.191149,1.0,-1.778537
+train_median__raw,train_median,TRAIN-Median baseline,TRAIN-Median baseline,baseline,raw,quantity_ge_3,4612,3.743278,5.775731,3.0,-3.743278
+train_mean__raw,train_mean,TRAIN-Mean baseline,TRAIN-Mean baseline,baseline,raw,all,82403,0.551184,1.3732,0.33098,-0.019772
+train_mean__raw,train_mean,TRAIN-Mean baseline,TRAIN-Mean baseline,baseline,raw,quantity_eq_1,66152,0.33098,0.33098,0.33098,0.33098
+train_mean__raw,train_mean,TRAIN-Mean baseline,TRAIN-Mean baseline,baseline,raw,quantity_gt_1,16251,1.447557,3.019216,0.66902,-1.447557
+train_mean__raw,train_mean,TRAIN-Mean baseline,TRAIN-Mean baseline,baseline,raw,quantity_ge_3,4612,3.412299,5.56693,2.66902,-3.412299
+ridge__raw,ridge,Ridge Regression,Ridge Regression,model,raw,all,82403,0.519359,1.325894,0.30742,0.021214
+ridge__raw,ridge,Ridge Regression,Ridge Regression,model,raw,quantity_eq_1,66152,0.333138,0.454869,0.255405,0.322006
+ridge__raw,ridge,Ridge Regression,Ridge Regression,model,raw,quantity_gt_1,16251,1.277399,2.841113,0.745055,-1.203203
+ridge__raw,ridge,Ridge Regression,Ridge Regression,model,raw,quantity_ge_3,4612,2.974879,5.229985,1.980826,-2.967635
+ridge__clipped_at_1,ridge,Ridge Regression,Ridge Regression (clipped at 1),model,clipped_at_1,all,82403,0.514404,1.32497,0.3056,0.026169
+ridge__clipped_at_1,ridge,Ridge Regression,Ridge Regression (clipped at 1),model,clipped_at_1,quantity_eq_1,66152,0.327572,0.453306,0.252779,0.327572
+ridge__clipped_at_1,ridge,Ridge Regression,Ridge Regression (clipped at 1),model,clipped_at_1,quantity_gt_1,16251,1.27493,2.839944,0.745055,-1.200733
+ridge__clipped_at_1,ridge,Ridge Regression,Ridge Regression (clipped at 1),model,clipped_at_1,quantity_ge_3,4612,2.973574,5.229321,1.980826,-2.96633
+random_forest__raw,random_forest,RandomForestRegressor,RandomForestRegressor,model,raw,all,82403,0.48619,1.273707,0.233322,0.005876
+random_forest__raw,random_forest,RandomForestRegressor,RandomForestRegressor,model,raw,quantity_eq_1,66152,0.288377,0.459055,0.184337,0.288377
+random_forest__raw,random_forest,RandomForestRegressor,RandomForestRegressor,model,raw,quantity_gt_1,16251,1.291416,2.714486,0.809889,-1.144086
+random_forest__raw,random_forest,RandomForestRegressor,RandomForestRegressor,model,raw,quantity_ge_3,4612,2.877118,4.958022,1.892933,-2.739186
+histgb__raw,histgb,HistGradientBoostingRegressor,HistGradientBoostingRegressor,model,raw,all,82403,0.496001,1.289114,0.232114,-0.013266
+histgb__raw,histgb,HistGradientBoostingRegressor,HistGradientBoostingRegressor,model,raw,quantity_eq_1,66152,0.2876,0.4133,0.207623,0.2876
+histgb__raw,histgb,HistGradientBoostingRegressor,HistGradientBoostingRegressor,model,raw,quantity_gt_1,16251,1.344327,2.780492,0.792718,-1.237981
+histgb__raw,histgb,HistGradientBoostingRegressor,HistGradientBoostingRegressor,model,raw,quantity_ge_3,4612,3.038809,5.090542,2.191634,-2.898738
+histgb_log1p__raw,histgb_log1p,HistGradientBoostingRegressor (log1p target),HistGradientBoostingRegressor (log1p target),model,raw,all,82403,0.437592,1.297212,0.178204,-0.10085
+histgb_log1p__raw,histgb_log1p,HistGradientBoostingRegressor (log1p target),HistGradientBoostingRegressor (log1p target),model,raw,quantity_eq_1,66152,0.205769,0.296218,0.149567,0.205769
+histgb_log1p__raw,histgb_log1p,HistGradientBoostingRegressor (log1p target),HistGradientBoostingRegressor (log1p target),model,raw,quantity_gt_1,16251,1.381258,2.859282,0.838527,-1.348984
+histgb_log1p__raw,histgb_log1p,HistGradientBoostingRegressor (log1p target),HistGradientBoostingRegressor (log1p target),model,raw,quantity_ge_3,4612,3.118333,5.239855,2.220734,-3.099608
+histgb_log1p__clipped_at_1,histgb_log1p,HistGradientBoostingRegressor (log1p target),HistGradientBoostingRegressor (log1p target) (clipped at 1),model,clipped_at_1,all,82403,0.437592,1.297212,0.178204,-0.100849
+histgb_log1p__clipped_at_1,histgb_log1p,HistGradientBoostingRegressor (log1p target),HistGradientBoostingRegressor (log1p target) (clipped at 1),model,clipped_at_1,quantity_eq_1,66152,0.205769,0.296218,0.149567,0.205769
+histgb_log1p__clipped_at_1,histgb_log1p,HistGradientBoostingRegressor (log1p target),HistGradientBoostingRegressor (log1p target) (clipped at 1),model,clipped_at_1,quantity_gt_1,16251,1.381258,2.859282,0.838527,-1.348984
+histgb_log1p__clipped_at_1,histgb_log1p,HistGradientBoostingRegressor (log1p target),HistGradientBoostingRegressor (log1p target) (clipped at 1),model,clipped_at_1,quantity_ge_3,4612,3.118333,5.239855,2.220734,-3.099608
+lightgbm__raw,lightgbm,LightGBMRegressor,LightGBMRegressor,model,raw,all,82403,0.483786,1.292807,0.217327,0.011022
+lightgbm__raw,lightgbm,LightGBMRegressor,LightGBMRegressor,model,raw,quantity_eq_1,66152,0.283417,0.498298,0.179168,0.283218
+lightgbm__raw,lightgbm,LightGBMRegressor,LightGBMRegressor,model,raw,quantity_gt_1,16251,1.299415,2.732045,0.805901,-1.096992
+lightgbm__raw,lightgbm,LightGBMRegressor,LightGBMRegressor,model,raw,quantity_ge_3,4612,2.885865,4.972194,1.915386,-2.609338
+lightgbm__clipped_at_1,lightgbm,LightGBMRegressor,LightGBMRegressor (clipped at 1),model,clipped_at_1,all,82403,0.483683,1.292745,0.217327,0.011124
+lightgbm__clipped_at_1,lightgbm,LightGBMRegressor,LightGBMRegressor (clipped at 1),model,clipped_at_1,quantity_eq_1,66152,0.283318,0.498288,0.179168,0.283318
+lightgbm__clipped_at_1,lightgbm,LightGBMRegressor,LightGBMRegressor (clipped at 1),model,clipped_at_1,quantity_gt_1,16251,1.299301,2.731903,0.805901,-1.096877
+lightgbm__clipped_at_1,lightgbm,LightGBMRegressor,LightGBMRegressor (clipped at 1),model,clipped_at_1,quantity_ge_3,4612,2.885705,4.971972,1.915386,-2.609178
+catboost__raw,catboost,CatBoostRegressor,CatBoostRegressor,model,raw,all,82403,0.480895,1.324915,0.226662,-0.008025
+catboost__raw,catboost,CatBoostRegressor,CatBoostRegressor,model,raw,quantity_eq_1,66152,0.279529,0.449638,0.19329,0.279524
+catboost__raw,catboost,CatBoostRegressor,CatBoostRegressor,model,raw,quantity_gt_1,16251,1.300586,2.842185,0.793215,-1.178532
+catboost__raw,catboost,CatBoostRegressor,CatBoostRegressor,model,raw,quantity_ge_3,4612,2.966165,5.217771,1.937853,-2.8039
+catboost__clipped_at_1,catboost,CatBoostRegressor,CatBoostRegressor (clipped at 1),model,clipped_at_1,all,82403,0.480893,1.324914,0.226662,-0.008023
+catboost__clipped_at_1,catboost,CatBoostRegressor,CatBoostRegressor (clipped at 1),model,clipped_at_1,quantity_eq_1,66152,0.279526,0.449638,0.19329,0.279526
+catboost__clipped_at_1,catboost,CatBoostRegressor,CatBoostRegressor (clipped at 1),model,clipped_at_1,quantity_gt_1,16251,1.300586,2.842185,0.793215,-1.178532
+catboost__clipped_at_1,catboost,CatBoostRegressor,CatBoostRegressor (clipped at 1),model,clipped_at_1,quantity_ge_3,4612,2.966165,5.217771,1.937853,-2.8039

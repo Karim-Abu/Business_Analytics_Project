@@ -27,6 +27,10 @@ Der Split ist **zeitbasiert** und nicht zufällig:
 - Test: Tage 71–81
 - Validation: Tage 82–92
 
+Train Set: Modell lernt Muster.
+Test Set: wird für Hyperparameter-Optimierung / Modellanpassung verwendet.
+Validation Set: spätester Holdout-Split zur finalen Auswahl/Bewertung des optimierten Modells.
+
 Ein Random Split wäre hier methodisch schwächer. Er würde frühere und spätere Tage mischen. Das wäre für ein zeitliches Vorhersageproblem unnatürlich und würde die Trennung von Vergangenheit und Zukunft aufweichen.
 
 Zusätzlich ist in der Projektdokumentation ein Strukturbruch vor Tag 26 festgehalten. Deshalb beginnt das reguläre Training bewusst erst ab Tag 26.

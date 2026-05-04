@@ -1,0 +1,3 @@
+model,probability_column,auc,logloss
+Gradient Boosting,Gradient Boosting (sklearn default) (1),0.7134517299767646,0.4969845311191343
+Logistic Regression,Logistic Regression (1),0.7062384128155927,0.6341796878072375

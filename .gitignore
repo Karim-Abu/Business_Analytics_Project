@@ -5,7 +5,49 @@ Data/
 data/raw/
 data/processed/
 
-Feature Engineering/outputs/
+# Feature Engineering — large data files excluded, audit/metadata/feature_selection tracked
+Feature Engineering/outputs/orange_exports/cls_train_full.csv
+Feature Engineering/outputs/orange_exports/cls_train_full_no_groups.csv
+Feature Engineering/outputs/orange_exports/cls_train_sample.csv
+Feature Engineering/outputs/orange_exports/cls_test.csv
+Feature Engineering/outputs/orange_exports/cls_test_no_groups.csv
+Feature Engineering/outputs/orange_exports/cls_val.csv
+Feature Engineering/outputs/orange_exports/cls_val_no_groups.csv
+Feature Engineering/outputs/orange_exports/reg_train_full.csv
+Feature Engineering/outputs/orange_exports/reg_train_full_no_group34.csv
+Feature Engineering/outputs/orange_exports/reg_train_sample.csv
+Feature Engineering/outputs/orange_exports/reg_test.csv
+Feature Engineering/outputs/orange_exports/reg_test_no_group34.csv
+Feature Engineering/outputs/orange_exports/reg_val.csv
+Feature Engineering/outputs/orange_exports/reg_val_no_group34.csv
+Feature Engineering/outputs/datasets/*.parquet
+
+# Modellierung — large CSVs (train/test/val data + raw predictions) excluded
+Modellierung/CLS/Daten/Sample/cls_train_full.csv
+Modellierung/CLS/Daten/Sample/cls_train_full_no_groups.csv
+Modellierung/CLS/Daten/Sample/cls_test.csv
+Modellierung/CLS/Daten/Sample/cls_test_no_groups.csv
+Modellierung/CLS/Daten/Sample/cls_val.csv
+Modellierung/CLS/Daten/Sample/cls_val_no_groups.csv
+Modellierung/CLS/Daten/final/final_cls_val_predictions.csv
+Modellierung/CLS/Daten/Full_scale/full_scale_cls_test_predictions.csv
+Modellierung/CLS/Daten/no_groups/cls_no_groups_predictions.csv
+Modellierung/CLS/Daten/Challenger/cls_test_100k_predictions_gb_logreg.csv
+Modellierung/CLS/Daten/Challenger/quick_challenger_predictions.csv
+Modellierung/CLS/Daten/Challenger/quick_challenger_catboost_predictions.csv
+Modellierung/CLS/Daten/Challenger/quick_challenger_catboost_midscale_predictions.csv
+Modellierung/CLS/Daten/Challenger/quick_challenger_lgbm_midscale_predictions.csv
+Modellierung/REG/Daten/Sample/reg_train_full.csv
+Modellierung/REG/Daten/Sample/reg_train_full_no_group34.csv
+Modellierung/REG/Daten/Sample/reg_train_sample.csv
+Modellierung/REG/Daten/Sample/reg_test.csv
+Modellierung/REG/Daten/Sample/reg_test_no_group34.csv
+Modellierung/REG/Daten/Sample/reg_val.csv
+Modellierung/REG/Daten/Sample/reg_val_no_group34.csv
+Modellierung/REG/Daten/Sample/reg_test_predictions_orange.csv
+Modellierung/REG/Daten/full_scale/full_scale_reg_test_predictions.csv
+Modellierung/REG/Daten/minimal/minimal_reg_predictions.csv
+Modellierung/REG/Daten/final/final_reg_val_predictions.csv
 
 Tableau/*.hyper
 

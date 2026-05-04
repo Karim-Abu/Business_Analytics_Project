@@ -1,0 +1,7 @@
+feature_a,feature_b,pearson_r
+is_lower_price,is_greater_discount,1.0
+rrp_per_unit,competitorPrice_per_unit,0.985161
+price_per_unit,competitorPrice_per_unit,0.980638
+rrp_per_unit,price_per_unit,0.973658
+rrp,competitorPrice,0.969705
+price,competitorPrice,0.960759

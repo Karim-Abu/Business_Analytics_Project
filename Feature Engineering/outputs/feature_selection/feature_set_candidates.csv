@@ -1,0 +1,97 @@
+feature_name,stage,in_safe_pruned,in_full_pruned,keep_reason,drop_reason,redundancy_flag,operational_flag
+adFlag,CLS,True,True,filter signal; operational — always available,,False,available
+adFlag,REG,False,False,,MI_REG=0,False,available
+availability,CLS,True,True,filter signal; operational — always available,,False,available
+availability,REG,False,False,,NZV in REG subset,False,available
+availability_likelihood,CLS,False,True,filter signal; conditional — requires history/encoder,,False,conditional
+availability_likelihood,REG,False,False,,MI_REG=0 + redundant r=-0.97,False,conditional
+basket_time,CLS,False,True,filter signal; conditional — requires history/encoder,,False,conditional
+basket_time,REG,False,True,filter signal; conditional — requires history/encoder,,False,conditional
+campaignIndex_norm,CLS,False,False,,MI_CLS≈0  (0.000034),False,available
+campaignIndex_norm,REG,True,True,filter signal; operational — always available,,False,available
+category_norm,CLS,True,True,filter signal; operational — always available,,False,available
+category_norm,REG,True,True,filter signal; operational — always available,,False,available
+click_time,CLS,False,True,filter signal; conditional — requires history/encoder,,False,conditional
+click_time,REG,False,True,filter signal; conditional — requires history/encoder,,False,conditional
+competitorPrice,CLS,True,True,filter signal; operational — always available,,False,available
+competitorPrice,REG,True,True,filter signal; operational — always available,,False,available
+competitorPrice_discount,CLS,False,False,,MI_CLS=0,False,available
+competitorPrice_discount,REG,False,False,,MI_REG=0,False,available
+competitorPrice_missing,CLS,False,False,,NZV (near-zero variance),False,available
+competitorPrice_missing,REG,False,False,,NZV (near-zero variance),False,available
+competitorPrice_per_unit,CLS,False,False,,redundant r≥0.98 with price_per_unit,True,available
+competitorPrice_per_unit,REG,False,False,,redundant r≥0.98 with price_per_unit,True,available
+day,CLS,True,True,filter signal; operational — always available,,False,available
+day,REG,True,True,filter signal; operational — always available,,False,available
+day_14,CLS,True,True,filter signal; operational — always available,,False,available
+day_14,REG,True,True,filter signal; operational — always available,,False,available
+day_30,CLS,True,True,filter signal; operational — always available,,False,available
+day_30,REG,True,True,filter signal; operational — always available,,False,available
+day_7,CLS,True,True,filter signal; operational — always available,,False,available
+day_7,REG,True,True,filter signal; operational — always available,,False,available
+day_7_likelihood,CLS,False,True,filter signal; conditional — requires history/encoder,,False,conditional
+day_7_likelihood,REG,False,False,,,False,conditional
+day_7_qty_mean_oof,CLS,False,False,,,False,conditional
+day_7_qty_mean_oof,REG,False,False,,MI_REG=0 + redundant r=-0.97,False,conditional
+discount_bin,CLS,True,True,filter signal; operational — always available,,False,available
+discount_bin,REG,True,True,filter signal; operational — always available,,False,available
+genericProduct,CLS,False,False,,MI_CLS=0,False,available
+genericProduct,REG,True,True,filter signal; operational — always available,,False,available
+group12,CLS,True,True,filter signal; operational — always available,,False,available
+group12,REG,False,False,,MI_REG=0,False,available
+group12_order,CLS,False,True,filter signal; conditional — requires history/encoder,,False,conditional
+group12_order,REG,False,True,filter signal; conditional — requires history/encoder,,False,conditional
+group34,CLS,True,True,filter signal; operational — always available,,False,available
+group34,REG,True,True,filter signal; operational — always available,,False,available
+group34_order,CLS,False,True,filter signal; conditional — requires history/encoder,,False,conditional
+group34_order,REG,False,True,filter signal; conditional — requires history/encoder,,False,conditional
+has_campaign,CLS,True,True,filter signal; operational — always available,,False,available
+has_campaign,REG,False,False,,MI_REG=0,False,available
+is_discount,CLS,False,False,,NZV,False,available
+is_discount,REG,False,False,,NZV,False,available
+is_greater_discount,CLS,True,True,filter signal; operational — always available,,False,available
+is_greater_discount,REG,False,False,,MI_REG=0,False,available
+is_lower_price,CLS,False,False,,redundant r=1.0 with is_greater_discount,True,available
+is_lower_price,REG,False,False,,redundant r=1.0 with is_greater_discount,True,available
+is_multipack,CLS,False,False,,MI_CLS=0,False,available
+is_multipack,REG,True,True,filter signal; operational — always available,,False,available
+manufacturer_freq,CLS,False,False,,MI_CLS=0,False,available
+manufacturer_freq,REG,True,True,filter signal; operational — always available,,False,available
+num_pid_order,CLS,False,False,,redundant r=1.0 with order_time,True,conditional
+num_pid_order,REG,False,False,,redundant r=1.0 with order_time,True,conditional
+order_time,CLS,False,True,filter signal; conditional — requires history/encoder,,False,conditional
+order_time,REG,False,True,filter signal; conditional — requires history/encoder,,False,conditional
+pack_n,CLS,False,False,,NZV + MI=0,False,available
+pack_n,REG,False,False,,NZV + MI=0,False,available
+pack_size,CLS,False,False,,MI_CLS=0,False,available
+pack_size,REG,False,False,,MI_REG=0,False,available
+pack_total_size,CLS,False,False,,MI_CLS=0,False,available
+pack_total_size,REG,False,False,,MI_REG=0,False,available
+pharmForm_norm,CLS,True,True,filter signal; operational — always available,,False,available
+pharmForm_norm,REG,True,True,filter signal; operational — always available,,False,available
+pid_prob,CLS,False,True,filter signal; conditional — requires history/encoder,,False,conditional
+pid_prob,REG,False,True,filter signal; conditional — requires history/encoder,,False,conditional
+pid_segment,CLS,False,True,filter signal; conditional — requires history/encoder,,False,conditional
+pid_segment,REG,False,True,filter signal; conditional — requires history/encoder,,False,conditional
+pid_total_events,CLS,False,True,filter signal; conditional — requires history/encoder,,False,conditional
+pid_total_events,REG,False,True,filter signal; conditional — requires history/encoder,,False,conditional
+price,CLS,True,True,filter signal; operational — always available,,False,available
+price,REG,True,True,filter signal; operational — always available,,False,available
+price_diff,CLS,False,False,,MI_CLS=0,False,available
+price_diff,REG,True,True,filter signal; operational — always available,,False,available
+price_diff_bin,CLS,True,True,filter signal; operational — always available,,False,available
+price_diff_bin,REG,True,True,filter signal; operational — always available,,False,available
+price_discount,CLS,False,False,,MI_CLS=0,False,available
+price_discount,REG,True,True,filter signal; operational — always available,,False,available
+price_discount_diff,CLS,False,False,,MI_CLS=0,False,available
+price_discount_diff,REG,False,False,,MI_REG=0,False,available
+price_per_unit,CLS,True,True,filter signal; operational — always available,,False,available
+price_per_unit,REG,False,False,,MI_REG=0,False,available
+rrp,CLS,False,False,,redundant r≥0.97 with competitorPrice,True,available
+rrp,REG,False,False,,redundant r≥0.97 with competitorPrice,True,available
+rrp_per_unit,CLS,False,False,,redundant r≥0.97 with price_per_unit,True,available
+rrp_per_unit,REG,False,False,,redundant r≥0.97 with price_per_unit,True,available
+salesIndex,CLS,True,True,filter signal; operational — always available,,False,available
+salesIndex,REG,True,True,filter signal; operational — always available,,False,available
+week_order,CLS,False,False,,"MI_CLS=0.0007 — weak, user-flagged",False,conditional
+week_order,REG,False,False,,MI_REG=0,False,conditional

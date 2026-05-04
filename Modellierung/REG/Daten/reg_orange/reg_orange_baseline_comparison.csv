@@ -1,0 +1,5 @@
+best_orange_model,best_orange_prediction_column,best_orange_rmse,best_orange_mae,best_orange_r2,baseline_label,baseline_prediction_column,baseline_rmse,baseline_mae,baseline_r2,delta_rmse_best_orange_minus_baseline,delta_mae_best_orange_minus_baseline,best_orange_beats_baseline_rmse,best_orange_beats_baseline_mae
+Random Forest,Random Forest,1.318017,0.500162,0.078565,Orange Constant baseline,Constant baseline (Orange: mean) - see Note for 'always 1',1.373205,0.55096,-0.000215,-0.055188,-0.050798,True,True
+Random Forest,Random Forest,1.318017,0.500162,0.078565,Always-1 baseline,generated::always_1,1.41715,0.350752,-0.065256,-0.099132,0.14941,True,False
+Random Forest,Random Forest,1.318017,0.500162,0.078565,TEST-Median baseline,generated::test_median,1.41715,0.350752,-0.065256,-0.099132,0.14941,True,False
+Random Forest,Random Forest,1.318017,0.500162,0.078565,TEST-Mean baseline,generated::test_mean,1.373057,0.563157,0.0,-0.05504,-0.062996,True,True

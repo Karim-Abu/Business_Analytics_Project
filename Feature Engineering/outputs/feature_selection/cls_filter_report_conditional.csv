@@ -1,0 +1,13 @@
+feature_name,dtype,feature_type,family,missing_rate,n_unique,is_constant,near_zero_variance,mutual_information,chi2_available,chi2_score,notes
+pid_total_events,int64,numeric,conditional_cumulative,0.0,26640,False,False,0.005996,True,352.2811,
+click_time,int64,numeric,conditional_cumulative,0.0,3092,False,False,0.002803,True,72.5792,
+basket_time,int64,numeric,conditional_cumulative,0.0,25927,False,False,0.020915,True,1181.6194,
+order_time,int64,numeric,conditional_cumulative,0.0,3899,False,False,0.020056,True,1908.8441,
+num_pid_order,int64,numeric,conditional_cumulative,0.0,3899,False,False,0.017209,True,1848.016,
+group12_order,float64,numeric,conditional_aggregation,0.0,21,False,False,0.007661,True,494.3331,
+group34_order,float64,numeric,conditional_aggregation,0.0,16,False,False,0.004575,True,385.971,
+week_order,float64,numeric,conditional_aggregation,0.0,7,False,False,0.000712,True,175.37,
+pid_prob,float64,numeric,conditional_oof,0.0,7004,False,False,0.045484,True,3806.952,
+availability_likelihood,float64,numeric,conditional_oof,0.0,23,False,False,0.003383,True,77.1644,
+day_7_likelihood,float64,numeric,conditional_oof,0.0,39,False,False,0.00241,True,121.7375,
+pid_segment,object,categorical,conditional_segment,0.0,3,False,False,0.002861,True,259.8321,

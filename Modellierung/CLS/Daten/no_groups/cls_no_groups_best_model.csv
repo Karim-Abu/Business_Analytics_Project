@@ -1,0 +1,2 @@
+model,threshold,auc,logloss,accuracy,precision,recall,f1,mcc,tn,fp,fn,tp,backend,fit_seconds,run_seconds,precision_collapse_vs_050,precision_ratio_vs_050,precision_check_message,selection_method
+HistGradientBoosting,0.22,0.7189325495423485,0.4934605445863295,0.6228498169965688,0.35953964314147896,0.7328592224900365,0.48240977104033306,0.27418933118861055,156235,109406,22388,61418,hist_gradient_boosting,32.48742059999495,34.939936000009766,False,0.6665277555799535,No precision collapse detected relative to the 0.50 baseline.,"F1 primary, MCC tie-breaker"

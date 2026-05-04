@@ -1,0 +1,9 @@
+model,segment,n,MAE,RMSE,MedianAE,Bias
+Always-1,all,87746,0.34,1.3749,0.0,-0.34
+Always-1,qty=1,70676,0.0,0.0,0.0,0.0
+Always-1,qty>1,17070,1.748,3.1173,1.0,-1.748
+Always-1,qty>=3,4779,3.6717,5.669,3.0,-3.6717
+RF_light_clipped,all,87746,0.4792,1.2439,0.2328,0.005
+RF_light_clipped,qty=1,70676,0.2855,0.4405,0.1954,0.2855
+RF_light_clipped,qty>1,17070,1.2812,2.6739,0.8046,-1.1567
+RF_light_clipped,qty>=3,4779,2.8471,4.9119,2.0219,-2.7681

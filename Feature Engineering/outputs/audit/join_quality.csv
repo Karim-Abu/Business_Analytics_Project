@@ -1,0 +1,9 @@
+check,value
+train_rows,2756003
+items_rows,22035
+merged_rows,2756003
+unique_pids_train,21928
+unique_pids_items,22035
+orphan_train_pids,0
+orphan_items_pids,107
+row_count_match,1

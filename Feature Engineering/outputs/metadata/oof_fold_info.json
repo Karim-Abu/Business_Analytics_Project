@@ -1,0 +1,250 @@
+{
+  "pid_prob": {
+    "group_col": "pid",
+    "target_col": "order",
+    "cold_start": 0.5,
+    "n_blocks": 7,
+    "blocks": [
+      {
+        "block": 1,
+        "type": "cold_start",
+        "value": 0.5,
+        "n_rows": 238879
+      },
+      {
+        "block": 2,
+        "type": "expanding",
+        "n_history_rows": 238879,
+        "n_groups": 17107,
+        "global_mean": 0.230087,
+        "n_rows": 241520
+      },
+      {
+        "block": 3,
+        "type": "expanding",
+        "n_history_rows": 480399,
+        "n_groups": 19291,
+        "global_mean": 0.227376,
+        "n_rows": 240507
+      },
+      {
+        "block": 4,
+        "type": "expanding",
+        "n_history_rows": 720906,
+        "n_groups": 20355,
+        "global_mean": 0.222329,
+        "n_rows": 237716
+      },
+      {
+        "block": 5,
+        "type": "expanding",
+        "n_history_rows": 958622,
+        "n_groups": 20837,
+        "global_mean": 0.22046,
+        "n_rows": 228037
+      },
+      {
+        "block": 6,
+        "type": "expanding",
+        "n_history_rows": 1186659,
+        "n_groups": 21279,
+        "global_mean": 0.21889,
+        "n_rows": 233999
+      },
+      {
+        "block": 7,
+        "type": "expanding",
+        "n_history_rows": 1420658,
+        "n_groups": 21454,
+        "global_mean": 0.221328,
+        "n_rows": 100602
+      }
+    ]
+  },
+  "availability_likelihood": {
+    "group_col": "availability",
+    "target_col": "order",
+    "cold_start": 0.5,
+    "n_blocks": 7,
+    "blocks": [
+      {
+        "block": 1,
+        "type": "cold_start",
+        "value": 0.5,
+        "n_rows": 238879
+      },
+      {
+        "block": 2,
+        "type": "expanding",
+        "n_history_rows": 238879,
+        "n_groups": 4,
+        "global_mean": 0.230087,
+        "n_rows": 241520
+      },
+      {
+        "block": 3,
+        "type": "expanding",
+        "n_history_rows": 480399,
+        "n_groups": 4,
+        "global_mean": 0.227376,
+        "n_rows": 240507
+      },
+      {
+        "block": 4,
+        "type": "expanding",
+        "n_history_rows": 720906,
+        "n_groups": 4,
+        "global_mean": 0.222329,
+        "n_rows": 237716
+      },
+      {
+        "block": 5,
+        "type": "expanding",
+        "n_history_rows": 958622,
+        "n_groups": 4,
+        "global_mean": 0.22046,
+        "n_rows": 228037
+      },
+      {
+        "block": 6,
+        "type": "expanding",
+        "n_history_rows": 1186659,
+        "n_groups": 4,
+        "global_mean": 0.21889,
+        "n_rows": 233999
+      },
+      {
+        "block": 7,
+        "type": "expanding",
+        "n_history_rows": 1420658,
+        "n_groups": 4,
+        "global_mean": 0.221328,
+        "n_rows": 100602
+      }
+    ]
+  },
+  "day_7_likelihood": {
+    "group_col": "day_7",
+    "target_col": "order",
+    "cold_start": 0.5,
+    "n_blocks": 7,
+    "blocks": [
+      {
+        "block": 1,
+        "type": "cold_start",
+        "value": 0.5,
+        "n_rows": 238879
+      },
+      {
+        "block": 2,
+        "type": "expanding",
+        "n_history_rows": 238879,
+        "n_groups": 7,
+        "global_mean": 0.230087,
+        "n_rows": 241520
+      },
+      {
+        "block": 3,
+        "type": "expanding",
+        "n_history_rows": 480399,
+        "n_groups": 7,
+        "global_mean": 0.227376,
+        "n_rows": 240507
+      },
+      {
+        "block": 4,
+        "type": "expanding",
+        "n_history_rows": 720906,
+        "n_groups": 7,
+        "global_mean": 0.222329,
+        "n_rows": 237716
+      },
+      {
+        "block": 5,
+        "type": "expanding",
+        "n_history_rows": 958622,
+        "n_groups": 7,
+        "global_mean": 0.22046,
+        "n_rows": 228037
+      },
+      {
+        "block": 6,
+        "type": "expanding",
+        "n_history_rows": 1186659,
+        "n_groups": 7,
+        "global_mean": 0.21889,
+        "n_rows": 233999
+      },
+      {
+        "block": 7,
+        "type": "expanding",
+        "n_history_rows": 1420658,
+        "n_groups": 7,
+        "global_mean": 0.221328,
+        "n_rows": 100602
+      }
+    ]
+  },
+  "day_7_qty_mean_oof": {
+    "group_col": "day_7",
+    "target_col": "quantity",
+    "cold_start": 1.0,
+    "n_blocks": 7,
+    "blocks": [
+      {
+        "block": 1,
+        "type": "cold_start",
+        "value": 1.0,
+        "n_rows": 238879
+      },
+      {
+        "block": 2,
+        "type": "expanding",
+        "n_history_rows": 54963,
+        "n_groups": 7,
+        "global_mean": 1.357622,
+        "n_rows": 241520
+      },
+      {
+        "block": 3,
+        "type": "expanding",
+        "n_history_rows": 109231,
+        "n_groups": 7,
+        "global_mean": 1.36193,
+        "n_rows": 240507
+      },
+      {
+        "block": 4,
+        "type": "expanding",
+        "n_history_rows": 160278,
+        "n_groups": 7,
+        "global_mean": 1.368953,
+        "n_rows": 237716
+      },
+      {
+        "block": 5,
+        "type": "expanding",
+        "n_history_rows": 211338,
+        "n_groups": 7,
+        "global_mean": 1.369498,
+        "n_rows": 228037
+      },
+      {
+        "block": 6,
+        "type": "expanding",
+        "n_history_rows": 259748,
+        "n_groups": 7,
+        "global_mean": 1.372946,
+        "n_rows": 233999
+      },
+      {
+        "block": 7,
+        "type": "expanding",
+        "n_history_rows": 314431,
+        "n_groups": 7,
+        "global_mean": 1.376098,
+        "n_rows": 100602
+      }
+    ]
+  }
+}
