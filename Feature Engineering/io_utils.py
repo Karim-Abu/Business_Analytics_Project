@@ -30,15 +30,46 @@ def load_raw_data() -> tuple[pd.DataFrame, pd.DataFrame]:
     -------
     df_train_raw, df_items
     """
-    if not cfg.TRAIN_CSV.exists():
-        raise FileNotFoundError(f"[io] Train file not found: {cfg.TRAIN_CSV}")
-    if not cfg.ITEMS_CSV.exists():
-        raise FileNotFoundError(f"[io] Items file not found: {cfg.ITEMS_CSV}")
+    expected_train_cols = [
+        "lineID", "day", "pid", "adFlag", "availability",
+        "competitorPrice", "click", "basket", "order", "price", "revenue",
+    ]
+    expected_items_cols = [
+        "pid", "manufacturer", "group", "content", "unit", "pharmForm",
+        "genericProduct", "salesIndex", "category", "campaignIndex", "rrp",
+    ]
+
+    if not cfg.TRAIN_CSV.exists() or not cfg.ITEMS_CSV.exists():
+        msg = (
+            "\n[io] Raw data not found.\n"
+            f"  Expected files:\n"
+            f"    - {cfg.TRAIN_CSV}\n"
+            f"    - {cfg.ITEMS_CSV}\n"
+            "\n"
+            "  If you do not have the full dataset, run the sample pipeline:\n"
+            "      python scripts/run_pipeline.py --sample\n"
+            "      python scripts/run_pipeline.py            (alias for --sample)\n"
+        )
+        raise FileNotFoundError(msg)
 
     df_train = pd.read_csv(cfg.TRAIN_CSV, sep="|")
     df_items = pd.read_csv(cfg.ITEMS_CSV, sep="|")
+
+    missing_train = [c for c in expected_train_cols if c not in df_train.columns]
+    missing_items = [c for c in expected_items_cols if c not in df_items.columns]
+    if missing_train or missing_items:
+        raise ValueError(
+            "[io] Raw data schema mismatch.\n"
+            f"  Train file: {cfg.TRAIN_CSV}\n"
+            f"    missing columns: {missing_train}\n"
+            f"  Items file: {cfg.ITEMS_CSV}\n"
+            f"    missing columns: {missing_items}\n"
+            "  Expected separator is '|'."
+        )
+
     print(
-        f"[io] Loaded train: {len(df_train):,} rows, items: {len(df_items):,} rows")
+        f"[io] Loaded train: {len(df_train):,} rows, items: {len(df_items):,} rows"
+    )
     return df_train, df_items
 
 

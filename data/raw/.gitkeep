@@ -1,0 +1,4 @@
+# Place real full-data CSVs here:
+#   data/raw/train.csv
+#   data/raw/items.csv
+# Both files use '|' as separator. They are NOT included in the repository.

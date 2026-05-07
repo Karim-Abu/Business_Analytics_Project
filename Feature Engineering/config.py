@@ -14,9 +14,18 @@ from pathlib import Path
 _FE_DIR = Path(__file__).resolve().parent          # Feature Engineering/
 _PROJECT_ROOT = _FE_DIR.parent                     # Analytics Project Code/
 
-DATA_DIR = _PROJECT_ROOT / "Data"
+PROJECT_ROOT = _PROJECT_ROOT
+
+# Default data locations.
+SAMPLE_DATA_DIR = _PROJECT_ROOT / "data" / "sample"
+RAW_DATA_DIR = _PROJECT_ROOT / "data" / "raw"
+
+# DATA_DIR is the active data directory. configure_runtime() rewrites it.
+DATA_DIR = RAW_DATA_DIR
 TRAIN_CSV = DATA_DIR / "train.csv"
 ITEMS_CSV = DATA_DIR / "items.csv"
+
+DEFAULT_ARTIFACTS_DIR = _PROJECT_ROOT / "artifacts" / "sample_run"
 
 OUTPUT_DIR = _FE_DIR / "outputs"
 OUTPUT_DATASETS_DIR = OUTPUT_DIR / "datasets"
@@ -24,6 +33,30 @@ OUTPUT_AUDIT_DIR = OUTPUT_DIR / "audit"
 OUTPUT_METADATA_DIR = OUTPUT_DIR / "metadata"
 OUTPUT_FEATURE_SELECTION_DIR = OUTPUT_DIR / "feature_selection"
 OUTPUT_ORANGE_EXPORTS_DIR = OUTPUT_DIR / "orange_exports"
+
+
+def configure_runtime(data_dir: Path | str, output_dir: Path | str) -> None:
+    """Reroute all data + output paths at runtime.
+
+    Used by ``scripts/run_pipeline.py`` to switch between sample run
+    (``data/sample/`` -> ``artifacts/<name>/``) and full run
+    (``data/raw/`` -> ``artifacts/<name>/``) without code changes.
+    """
+    global DATA_DIR, TRAIN_CSV, ITEMS_CSV
+    global OUTPUT_DIR, OUTPUT_DATASETS_DIR, OUTPUT_AUDIT_DIR
+    global OUTPUT_METADATA_DIR, OUTPUT_FEATURE_SELECTION_DIR
+    global OUTPUT_ORANGE_EXPORTS_DIR
+
+    DATA_DIR = Path(data_dir).resolve()
+    TRAIN_CSV = DATA_DIR / "train.csv"
+    ITEMS_CSV = DATA_DIR / "items.csv"
+
+    OUTPUT_DIR = Path(output_dir).resolve()
+    OUTPUT_DATASETS_DIR = OUTPUT_DIR / "datasets"
+    OUTPUT_AUDIT_DIR = OUTPUT_DIR / "audit"
+    OUTPUT_METADATA_DIR = OUTPUT_DIR / "metadata"
+    OUTPUT_FEATURE_SELECTION_DIR = OUTPUT_DIR / "feature_selection"
+    OUTPUT_ORANGE_EXPORTS_DIR = OUTPUT_DIR / "orange_exports"
 
 # ── Split boundaries ────────────────────────────────────────────────────────
 # Naming convention used in this project: Train -> Test -> Validation.

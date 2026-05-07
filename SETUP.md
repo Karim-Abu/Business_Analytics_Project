@@ -104,13 +104,13 @@ Data/
 
 Diese Dateien muessen in `Modellierung/CLS/Daten/` liegen:
 
-| Datei | Verwendet in |
-| --- | --- |
-| `cls_train_full.csv` | `full_scale_cls_modeling.ipynb`, `quick_challenger_lgbm_catboost.ipynb` |
-| `cls_test.csv` | `full_scale_cls_modeling.ipynb`, `quick_challenger_lgbm_catboost.ipynb` |
-| `cls_val.csv` | `full_scale_cls_modeling.ipynb`, `quick_challenger_lgbm_catboost.ipynb` |
-| `cls_train_full_no_groups.csv` | `cls_no_groups_sensitivity.ipynb` |
-| `cls_test_no_groups.csv` | `cls_no_groups_sensitivity.ipynb` |
+| Datei                          | Verwendet in                                                            |
+| ------------------------------ | ----------------------------------------------------------------------- |
+| `cls_train_full.csv`           | `full_scale_cls_modeling.ipynb`, `quick_challenger_lgbm_catboost.ipynb` |
+| `cls_test.csv`                 | `full_scale_cls_modeling.ipynb`, `quick_challenger_lgbm_catboost.ipynb` |
+| `cls_val.csv`                  | `full_scale_cls_modeling.ipynb`, `quick_challenger_lgbm_catboost.ipynb` |
+| `cls_train_full_no_groups.csv` | `cls_no_groups_sensitivity.ipynb`                                       |
+| `cls_test_no_groups.csv`       | `cls_no_groups_sensitivity.ipynb`                                       |
 
 ```text
 Modellierung/
@@ -127,8 +127,8 @@ Modellierung/
 
 Diese Datei muss direkt in `Modellierung/` liegen:
 
-| Datei | Verwendet in |
-| --- | --- |
+| Datei                                     | Verwendet in                      |
+| ----------------------------------------- | --------------------------------- |
 | `cls_test_100k_predictions_gb_logreg.csv` | `threshold_tuning_cls_100k.ipynb` |
 
 ```text
@@ -142,11 +142,11 @@ Hinweis: Diese Datei wird von der aktuellen Feature-Engineering-Pipeline nicht a
 
 Diese Dateien muessen in `Feature Engineering/outputs/orange_exports/` liegen:
 
-| Datei | Verwendet in |
-| --- | --- |
+| Datei                | Verwendet in                            |
+| -------------------- | --------------------------------------- |
 | `reg_train_full.csv` | `full_scale_reg_modeling_minimal.ipynb` |
-| `reg_test.csv` | `full_scale_reg_modeling_minimal.ipynb` |
-| `reg_val.csv` | `full_scale_reg_modeling_minimal.ipynb` |
+| `reg_test.csv`       | `full_scale_reg_modeling_minimal.ipynb` |
+| `reg_val.csv`        | `full_scale_reg_modeling_minimal.ipynb` |
 
 ```text
 Feature Engineering/
@@ -259,14 +259,14 @@ Loesung: Zuerst `full_scale_cls_modeling.ipynb` komplett ausfuehren.
 
 Die vollstaendige Liste steht in `requirements.txt`. Die wichtigsten Pakete fuer die Modellierung sind:
 
-| Paket | Version | Zweck |
-| --- | --- | --- |
-| `pandas` | 3.0.1 | Datenverarbeitung |
-| `numpy` | 2.4.2 | Numerik |
-| `scikit-learn` | 1.8.0 | ML-Modelle |
-| `lightgbm` | 4.6.0 | Challenger-Modelle |
-| `catboost` | 1.2.10 | Challenger-Modelle |
-| `matplotlib` | 3.10.9 | Visualisierungen |
-| `plotly` | 6.7.0 | Interaktive Plots |
-| `pyarrow` | 23.0.1 | Parquet-Handling |
-| `ipykernel` | 7.2.0 | Notebook-Kernel in VS Code |
+| Paket          | Version | Zweck                      |
+| -------------- | ------- | -------------------------- |
+| `pandas`       | 3.0.1   | Datenverarbeitung          |
+| `numpy`        | 2.4.2   | Numerik                    |
+| `scikit-learn` | 1.8.0   | ML-Modelle                 |
+| `lightgbm`     | 4.6.0   | Challenger-Modelle         |
+| `catboost`     | 1.2.10  | Challenger-Modelle         |
+| `matplotlib`   | 3.10.9  | Visualisierungen           |
+| `plotly`       | 6.7.0   | Interaktive Plots          |
+| `pyarrow`      | 23.0.1  | Parquet-Handling           |
+| `ipykernel`    | 7.2.0   | Notebook-Kernel in VS Code |
