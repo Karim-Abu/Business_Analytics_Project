@@ -1,0 +1,245 @@
+{
+  "timestamp_utc": "2026-05-17T20:47:42Z",
+  "mode": "safe_only",
+  "elapsed_s": 39.94,
+  "rows": {
+    "train_raw": 2756003,
+    "items": 22035,
+    "merged": 2756003,
+    "train": 1521260,
+    "test": 349447,
+    "validation": 363483
+  },
+  "orange_export": "skipped (only available in safe_plus_conditional)",
+  "run_type": "full",
+  "inputs": {
+    "data_dir": "C:\\Users\\karim\\OneDrive - FHNW\\Documents\\Analytics Project Code\\data\\raw",
+    "train_csv": "C:\\Users\\karim\\OneDrive - FHNW\\Documents\\Analytics Project Code\\data\\raw\\train.csv",
+    "items_csv": "C:\\Users\\karim\\OneDrive - FHNW\\Documents\\Analytics Project Code\\data\\raw\\items.csv"
+  },
+  "next_steps": [
+    "Inspect feature matrices in `datasets/`",
+    "Inspect audit reports in `audit/`",
+    "For real data, run: python scripts/run_pipeline.py --full"
+  ],
+  "notes": [
+    "Full run uses the real dataset from data/raw/.",
+    "Quick benchmark results are diagnostic only and are available in benchmark/. They are not the final model selection."
+  ],
+  "model_benchmark": {
+    "status": "completed",
+    "benchmark_is_final_model_selection": false,
+    "quick_benchmark_winners_diagnostic_only": [
+      {
+        "task": "cls",
+        "variant": "expanded",
+        "model": "LogisticRegressionBalanced",
+        "split": "validation",
+        "n_train": 200000,
+        "n_eval": 100000,
+        "selection_metric": "f1",
+        "selection_value": 0.4131802147,
+        "training_target_median": null,
+        "status": "ok",
+        "error": "",
+        "accuracy": 0.60909,
+        "f1": 0.4131802147,
+        "pr_auc": 0.3438817144,
+        "roc_auc": 0.6260496537,
+        "mae": null,
+        "median_ae": null,
+        "rmse": null,
+        "r2": null,
+        "elapsed_s": 1.933
+      },
+      {
+        "task": "reg",
+        "variant": "expanded",
+        "model": "DummyMedian",
+        "split": "validation",
+        "n_train": 200000,
+        "n_eval": 87746,
+        "selection_metric": "mae",
+        "selection_value": 0.3400496889,
+        "training_target_median": 1.0,
+        "status": "ok",
+        "error": "",
+        "accuracy": null,
+        "f1": null,
+        "pr_auc": null,
+        "roc_auc": null,
+        "mae": 0.3400496889,
+        "median_ae": 0.0,
+        "rmse": 1.3749304535,
+        "r2": -0.0651531403,
+        "elapsed_s": 0.007
+      }
+    ]
+  },
+  "files": [
+    {
+      "path": "audit/dropped_features.csv",
+      "size_bytes": 512
+    },
+    {
+      "path": "audit/feature_matrix_summary.txt",
+      "size_bytes": 986
+    },
+    {
+      "path": "audit/feature_sets.csv",
+      "size_bytes": 535
+    },
+    {
+      "path": "audit/join_quality.csv",
+      "size_bytes": 185
+    },
+    {
+      "path": "audit/missingness_merged.csv",
+      "size_bytes": 240
+    },
+    {
+      "path": "audit/missingness_train.csv",
+      "size_bytes": 521
+    },
+    {
+      "path": "audit/outliers_train.csv",
+      "size_bytes": 436
+    },
+    {
+      "path": "audit/pharmform_group_target_summary.csv",
+      "size_bytes": 744
+    },
+    {
+      "path": "audit/pharmform_mapping_coverage.csv",
+      "size_bytes": 221
+    },
+    {
+      "path": "audit/pharmform_unmapped_top20.csv",
+      "size_bytes": 713
+    },
+    {
+      "path": "audit/sampling_audit_cls.csv",
+      "size_bytes": 664
+    },
+    {
+      "path": "audit/sampling_audit_reg.csv",
+      "size_bytes": 644
+    },
+    {
+      "path": "audit/target_distribution.csv",
+      "size_bytes": 224
+    },
+    {
+      "path": "benchmark/quick_benchmark_winners.csv",
+      "size_bytes": 491
+    },
+    {
+      "path": "benchmark/model_benchmark_results.csv",
+      "size_bytes": 1955
+    },
+    {
+      "path": "benchmark/model_benchmark_summary.json",
+      "size_bytes": 2325
+    },
+    {
+      "path": "benchmark/model_benchmark_summary.txt",
+      "size_bytes": 981
+    },
+    {
+      "path": "datasets/train_cls_sample.parquet",
+      "size_bytes": 22538159
+    },
+    {
+      "path": "datasets/train_reg_sample.parquet",
+      "size_bytes": 5460992
+    },
+    {
+      "path": "datasets/X_test_cls_base.parquet",
+      "size_bytes": 9543159
+    },
+    {
+      "path": "datasets/X_test_cls_expanded.parquet",
+      "size_bytes": 9984763
+    },
+    {
+      "path": "datasets/X_test_reg_base.parquet",
+      "size_bytes": 2460565
+    },
+    {
+      "path": "datasets/X_test_reg_expanded.parquet",
+      "size_bytes": 2565719
+    },
+    {
+      "path": "datasets/X_train_cls_base.parquet",
+      "size_bytes": 41536797
+    },
+    {
+      "path": "datasets/X_train_cls_expanded.parquet",
+      "size_bytes": 43455547
+    },
+    {
+      "path": "datasets/X_train_reg_base.parquet",
+      "size_bytes": 9318083
+    },
+    {
+      "path": "datasets/X_train_reg_expanded.parquet",
+      "size_bytes": 9738392
+    },
+    {
+      "path": "datasets/X_validation_cls_base.parquet",
+      "size_bytes": 9978330
+    },
+    {
+      "path": "datasets/X_validation_cls_expanded.parquet",
+      "size_bytes": 10437652
+    },
+    {
+      "path": "datasets/X_validation_reg_base.parquet",
+      "size_bytes": 2628335
+    },
+    {
+      "path": "datasets/X_validation_reg_expanded.parquet",
+      "size_bytes": 2740196
+    },
+    {
+      "path": "datasets/y_test_cls.parquet",
+      "size_bytes": 50932
+    },
+    {
+      "path": "datasets/y_test_reg.parquet",
+      "size_bytes": 30139
+    },
+    {
+      "path": "datasets/y_train_cls.parquet",
+      "size_bytes": 210712
+    },
+    {
+      "path": "datasets/y_train_reg.parquet",
+      "size_bytes": 113892
+    },
+    {
+      "path": "datasets/y_validation_cls.parquet",
+      "size_bytes": 53206
+    },
+    {
+      "path": "datasets/y_validation_reg.parquet",
+      "size_bytes": 32155
+    },
+    {
+      "path": "metadata/binning_edges.json",
+      "size_bytes": 1060
+    },
+    {
+      "path": "metadata/pid_segment_map.csv",
+      "size_bytes": 238677
+    },
+    {
+      "path": "RUN_MANIFEST.md",
+      "size_bytes": 3047
+    },
+    {
+      "path": "run_summary.json",
+      "size_bytes": 4371
+    }
+  ]
+}

@@ -27,7 +27,7 @@ import pandas as pd
 
 import config as cfg
 from io_utils import (
-    load_raw_data, merge_train_items, ensure_output_dirs,
+    load_raw_data, load_pharmform_mapping, merge_train_items, ensure_output_dirs,
     save_parquet, save_csv, save_text_report,
 )
 from Preprocessing.preprocessing import run_all_preprocessing
@@ -66,12 +66,14 @@ def run_safe_only(run_context: dict | None = None) -> dict:
 
     # ── 2. Load raw data ─────────────────────────────────────────────────
     df_train_raw, df_items = load_raw_data()
+    pharmform_mapping = load_pharmform_mapping()
 
     # ── 3. Join ──────────────────────────────────────────────────────────
     df_merged = merge_train_items(df_train_raw, df_items)
 
     # ── 4. Preprocessing ─────────────────────────────────────────────────
-    df_merged = run_all_preprocessing(df_merged)
+    df_merged = run_all_preprocessing(
+        df_merged, pharmform_mapping=pharmform_mapping)
     assert_preprocessing_integrity(
         df_merged, context="safe_only/post-preprocessing")
 
@@ -159,12 +161,14 @@ def run_safe_plus_conditional(
 
     # ── 2. Load raw data ─────────────────────────────────────────────────
     df_train_raw, df_items = load_raw_data()
+    pharmform_mapping = load_pharmform_mapping()
 
     # ── 3. Join ──────────────────────────────────────────────────────────
     df_merged = merge_train_items(df_train_raw, df_items)
 
     # ── 4. Preprocessing ─────────────────────────────────────────────────
-    df_merged = run_all_preprocessing(df_merged)
+    df_merged = run_all_preprocessing(
+        df_merged, pharmform_mapping=pharmform_mapping)
     assert_preprocessing_integrity(
         df_merged, context="safe_plus_conditional/post-preprocessing")
 
@@ -452,7 +456,8 @@ def write_run_manifest(output_dir: Path, summary: dict) -> None:
     (output_dir / "RUN_MANIFEST.md").write_text(
         "\n".join(lines), encoding="utf-8"
     )
-    print(f"[manifest] Wrote RUN_MANIFEST.md and run_summary.json -> {output_dir}")
+    print(
+        f"[manifest] Wrote RUN_MANIFEST.md and run_summary.json -> {output_dir}")
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -495,12 +500,17 @@ def main(argv: list[str] | None = None) -> None:
     if run_type == "sample":
         data_dir = cfg.SAMPLE_DATA_DIR
         default_out = cfg.PROJECT_ROOT / "artifacts" / "sample_run"
+        train_filename = cfg.SAMPLE_TRAIN_FILENAME
+        items_filename = cfg.SAMPLE_ITEMS_FILENAME
     else:
         data_dir = cfg.RAW_DATA_DIR
         default_out = cfg.PROJECT_ROOT / "artifacts" / "full_run"
+        train_filename = "train.csv"
+        items_filename = "items.csv"
 
-    output_dir = Path(args.output_dir).resolve() if args.output_dir else default_out
-    cfg.configure_runtime(data_dir, output_dir)
+    output_dir = Path(args.output_dir).resolve(
+    ) if args.output_dir else default_out
+    cfg.configure_runtime(data_dir, output_dir, train_filename, items_filename)
 
     print(f"\n{'#'*60}")
     print(f"  Dynamic Pricing - Data Preparation Pipeline")

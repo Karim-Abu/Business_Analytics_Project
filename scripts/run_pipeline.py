@@ -145,10 +145,16 @@ def main_with_optional_benchmark(argv: list[str]) -> None:
         summary.pop("files", None)
         summary["model_benchmark"] = {
             "status": "completed",
-            "best_models": benchmark_summary.get("best_models", []),
+            "benchmark_is_final_model_selection": False,
+            "quick_benchmark_winners_diagnostic_only": benchmark_summary.get(
+                "quick_benchmark_winners_diagnostic_only", []
+            ),
         }
         notes = list(summary.get("notes", []))
-        notes.append("Model benchmark results are available in benchmark/.")
+        notes.append(
+            "Quick benchmark results are diagnostic only and are available in "
+            "benchmark/. They are not the final model selection."
+        )
         summary["notes"] = notes
         write_run_manifest(output_dir, summary)
 

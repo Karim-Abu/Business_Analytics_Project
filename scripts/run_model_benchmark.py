@@ -40,6 +40,20 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 PREFERRED_VARIANTS = ("conditional", "expanded", "base")
 CLASSIFICATION_METRIC = "f1"
 REGRESSION_METRIC = "mae"
+DIAGNOSTIC_WINNERS_LABEL = "Quick benchmark winners (diagnostic only)"
+DIAGNOSTIC_NOTE = (
+    "Note: This quick benchmark uses capped training/evaluation data and is "
+    "not the final model selection reported in the paper."
+)
+FINAL_MODEL_SELECTION_NOTE = (
+    "Final model selection is documented in the separate modelling "
+    "documentation: CLS final: HistGradientBoosting, Threshold 0.22. "
+    "REG final: Always-1 / DummyMedian, because median quantity = 1."
+)
+DUMMY_MEDIAN_ALWAYS_ONE_NOTE = (
+    "For this dataset, DummyMedian is equivalent to the documented Always-1 "
+    "baseline because the training median of quantity is 1."
+)
 
 
 def _utc_timestamp() -> str:
@@ -87,7 +101,8 @@ def _coerce_numeric_pair(
 
     missing_eval_cols = [c for c in x_train.columns if c not in x_eval.columns]
     if missing_eval_cols:
-        raise ValueError(f"Evaluation matrix is missing columns: {missing_eval_cols}")
+        raise ValueError(
+            f"Evaluation matrix is missing columns: {missing_eval_cols}")
     x_eval = x_eval[x_train.columns]
 
     for col in x_train.columns:
@@ -228,6 +243,7 @@ def _empty_metric_row(
         "n_eval": n_eval,
         "selection_metric": CLASSIFICATION_METRIC if task == "cls" else REGRESSION_METRIC,
         "selection_value": np.nan,
+        "training_target_median": np.nan,
         "status": "ok",
         "error": "",
         "accuracy": np.nan,
@@ -295,7 +311,8 @@ def _evaluate_regression(
         model.fit(x_train, y_train.astype(float))
         predictions = model.predict(x_eval)
         row["mae"] = mean_absolute_error(y_eval.astype(float), predictions)
-        row["median_ae"] = median_absolute_error(y_eval.astype(float), predictions)
+        row["median_ae"] = median_absolute_error(
+            y_eval.astype(float), predictions)
         row["rmse"] = float(
             np.sqrt(mean_squared_error(y_eval.astype(float), predictions))
         )
@@ -319,9 +336,11 @@ def _load_task_data(
     random_state: int,
 ) -> tuple[pd.DataFrame, pd.Series, pd.DataFrame, pd.Series]:
     """Load, clean, sample and numeric-coerce matrices for one task."""
-    x_train = pd.read_parquet(datasets_dir / f"X_train_{task}_{variant}.parquet")
+    x_train = pd.read_parquet(
+        datasets_dir / f"X_train_{task}_{variant}.parquet")
     y_train = _read_target(datasets_dir / f"y_train_{task}.parquet", task)
-    x_eval = pd.read_parquet(datasets_dir / f"X_{split}_{task}_{variant}.parquet")
+    x_eval = pd.read_parquet(
+        datasets_dir / f"X_{split}_{task}_{variant}.parquet")
     y_eval = _read_target(datasets_dir / f"y_{split}_{task}.parquet", task)
 
     x_train, y_train = _drop_missing_target(x_train, y_train)
@@ -334,6 +353,58 @@ def _load_task_data(
     )
     x_train, x_eval = _coerce_numeric_pair(x_train, x_eval)
     return x_train, y_train, x_eval, y_eval
+
+
+def _median_quantity_note(row: pd.Series) -> str | None:
+    """Return the Always-1 note for the matching DummyMedian winner."""
+    if row.get("task") != "reg" or row.get("model") != "DummyMedian":
+        return None
+    median_value = row.get("training_target_median")
+    if pd.isna(median_value):
+        return None
+    if np.isclose(float(median_value), 1.0):
+        return DUMMY_MEDIAN_ALWAYS_ONE_NOTE
+    return None
+
+
+def _summary_winner_lines(row: pd.Series) -> list[str]:
+    """Return markdown lines for one diagnostic benchmark winner."""
+    if row["task"] == "cls":
+        return [
+            "- CLS: "
+            f"{row['model']} on {row['variant']} "
+            f"({row['split']}), F1={row['f1']:.4f}, "
+            f"PR-AUC={row['pr_auc']:.4f}, ROC-AUC={row['roc_auc']:.4f}"
+        ]
+
+    lines = [
+        "- REG: "
+        f"{row['model']} on {row['variant']} "
+        f"({row['split']}), MAE={row['mae']:.4f}, "
+        f"MedAE={row['median_ae']:.4f}, RMSE={row['rmse']:.4f}"
+    ]
+    median_note = _median_quantity_note(row)
+    if median_note:
+        lines.append(f"  - {median_note}")
+    return lines
+
+
+def _print_winner(row: pd.Series) -> None:
+    """Print one diagnostic benchmark winner to stdout."""
+    if row["task"] == "cls":
+        print(
+            f"    CLS: {row['model']} "
+            f"F1={row['f1']:.4f} PR-AUC={row['pr_auc']:.4f}"
+        )
+        return
+
+    print(
+        f"    REG: {row['model']} "
+        f"MAE={row['mae']:.4f} RMSE={row['rmse']:.4f}"
+    )
+    median_note = _median_quantity_note(row)
+    if median_note:
+        print(f"    {median_note}")
 
 
 def _select_best(results: pd.DataFrame) -> pd.DataFrame:
@@ -350,7 +421,8 @@ def _select_best(results: pd.DataFrame) -> pd.DataFrame:
         ]
         if subset.empty:
             continue
-        best_rows.append(subset.sort_values(metric, ascending=ascending).iloc[0])
+        best_rows.append(subset.sort_values(
+            metric, ascending=ascending).iloc[0])
 
     if not best_rows:
         return pd.DataFrame(columns=results.columns)
@@ -374,27 +446,16 @@ def _write_text_summary(
     lines.append(f"- Train row limit: `{max_train_rows or 'none'}`")
     lines.append(f"- Evaluation row limit: `{max_eval_rows or 'none'}`")
     lines.append("- Selection: CLS uses highest F1; REG uses lowest MAE.")
+    lines.append(f"- {DIAGNOSTIC_NOTE}")
+    lines.append(f"- {FINAL_MODEL_SELECTION_NOTE}")
     lines.append("")
-    lines.append("## Best Models")
+    lines.append(f"## {DIAGNOSTIC_WINNERS_LABEL}")
 
     if best.empty:
         lines.append("- No successful model benchmark result.")
     else:
         for _, row in best.iterrows():
-            if row["task"] == "cls":
-                lines.append(
-                    "- CLS: "
-                    f"{row['model']} on {row['variant']} "
-                    f"({row['split']}), F1={row['f1']:.4f}, "
-                    f"PR-AUC={row['pr_auc']:.4f}, ROC-AUC={row['roc_auc']:.4f}"
-                )
-            else:
-                lines.append(
-                    "- REG: "
-                    f"{row['model']} on {row['variant']} "
-                    f"({row['split']}), MAE={row['mae']:.4f}, "
-                    f"MedAE={row['median_ae']:.4f}, RMSE={row['rmse']:.4f}"
-                )
+            lines.extend(_summary_winner_lines(row))
 
     failed = results[results["status"] != "ok"]
     if not failed.empty:
@@ -460,7 +521,7 @@ def _benchmark_variant(
         max_eval_rows,
         random_state,
     )
-    return [
+    result_rows = [
         _evaluate_task_model(
             task,
             model_name,
@@ -474,6 +535,11 @@ def _benchmark_variant(
         )
         for model_name, model in _models_for_task(task, random_state).items()
     ]
+    if task == "reg":
+        training_target_median = float(y_train.astype(float).median())
+        for result_row in result_rows:
+            result_row["training_target_median"] = training_target_median
+    return result_rows
 
 
 def _collect_benchmark_rows(
@@ -542,12 +608,12 @@ def run_benchmark(
     best = _select_best(results) if not results.empty else pd.DataFrame()
 
     results_path = benchmark_dir / "model_benchmark_results.csv"
-    best_path = benchmark_dir / "best_models.csv"
+    winners_path = benchmark_dir / "quick_benchmark_winners.csv"
     json_path = benchmark_dir / "model_benchmark_summary.json"
     text_path = benchmark_dir / "model_benchmark_summary.txt"
 
     results.to_csv(results_path, index=False)
-    best.to_csv(best_path, index=False)
+    best.to_csv(winners_path, index=False)
     _write_text_summary(
         text_path,
         output_dir,
@@ -568,31 +634,24 @@ def run_benchmark(
             "reg": f"lowest {REGRESSION_METRIC}",
         },
         "elapsed_s": round(time.time() - started, 2),
-        "best_models": _json_records(best),
+        "benchmark_is_final_model_selection": False,
+        "quick_benchmark_winners_diagnostic_only": _json_records(best),
         "files": {
             "results_csv": str(results_path),
-            "best_models_csv": str(best_path),
+            "quick_benchmark_winners_csv": str(winners_path),
             "summary_json": str(json_path),
             "summary_txt": str(text_path),
         },
     }
     json_path.write_text(json.dumps(summary, indent=2), encoding="utf-8")
 
-    print("\n  Best models:")
+    print(f"\n  {DIAGNOSTIC_WINNERS_LABEL}:")
+    print(f"  {DIAGNOSTIC_NOTE}")
     if best.empty:
         print("    (none)")
     else:
         for _, row in best.iterrows():
-            if row["task"] == "cls":
-                print(
-                    f"    CLS: {row['model']} "
-                    f"F1={row['f1']:.4f} PR-AUC={row['pr_auc']:.4f}"
-                )
-            else:
-                print(
-                    f"    REG: {row['model']} "
-                    f"MAE={row['mae']:.4f} RMSE={row['rmse']:.4f}"
-                )
+            _print_winner(row)
     print(f"  Results: {results_path}")
     print(f"  Summary: {text_path}")
     return summary

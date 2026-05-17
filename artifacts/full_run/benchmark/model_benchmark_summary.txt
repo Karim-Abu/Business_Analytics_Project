@@ -1,0 +1,14 @@
+# Model Benchmark Summary
+
+- Timestamp (UTC): `2026-05-17T20:47:42Z`
+- Output directory: `C:\Users\karim\OneDrive - FHNW\Documents\Analytics Project Code\artifacts\full_run`
+- Train row limit: `200000`
+- Evaluation row limit: `100000`
+- Selection: CLS uses highest F1; REG uses lowest MAE.
+- Note: This quick benchmark uses capped training/evaluation data and is not the final model selection reported in the paper.
+- Final model selection is documented in the separate modelling documentation: CLS final: HistGradientBoosting, Threshold 0.22. REG final: Always-1 / DummyMedian, because median quantity = 1.
+
+## Quick benchmark winners (diagnostic only)
+- CLS: LogisticRegressionBalanced on expanded (validation), F1=0.4132, PR-AUC=0.3439, ROC-AUC=0.6260
+- REG: DummyMedian on expanded (validation), MAE=0.3400, MedAE=0.0000, RMSE=1.3749
+	- For this dataset, DummyMedian is equivalent to the documented Always-1 baseline because the training median of quantity is 1.

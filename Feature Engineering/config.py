@@ -24,6 +24,15 @@ RAW_DATA_DIR = _PROJECT_ROOT / "data" / "raw"
 DATA_DIR = RAW_DATA_DIR
 TRAIN_CSV = DATA_DIR / "train.csv"
 ITEMS_CSV = DATA_DIR / "items.csv"
+SAMPLE_TRAIN_FILENAME = "train_sample.csv"
+SAMPLE_ITEMS_FILENAME = "items_sample.csv"
+
+PHARMFORM_MAPPING_FILE = "pharmform_mapping.csv.xlsx"
+PHARMFORM_MAPPING_CANDIDATES = [
+    _PROJECT_ROOT / "data" / "mappings" / PHARMFORM_MAPPING_FILE,
+    _PROJECT_ROOT / PHARMFORM_MAPPING_FILE,
+    _PROJECT_ROOT / "data" / PHARMFORM_MAPPING_FILE,
+]
 
 DEFAULT_ARTIFACTS_DIR = _PROJECT_ROOT / "artifacts" / "sample_run"
 
@@ -35,7 +44,12 @@ OUTPUT_FEATURE_SELECTION_DIR = OUTPUT_DIR / "feature_selection"
 OUTPUT_ORANGE_EXPORTS_DIR = OUTPUT_DIR / "orange_exports"
 
 
-def configure_runtime(data_dir: Path | str, output_dir: Path | str) -> None:
+def configure_runtime(
+    data_dir: Path | str,
+    output_dir: Path | str,
+    train_filename: str = "train.csv",
+    items_filename: str = "items.csv",
+) -> None:
     """Reroute all data + output paths at runtime.
 
     Used by ``scripts/run_pipeline.py`` to switch between sample run
@@ -48,8 +62,8 @@ def configure_runtime(data_dir: Path | str, output_dir: Path | str) -> None:
     global OUTPUT_ORANGE_EXPORTS_DIR
 
     DATA_DIR = Path(data_dir).resolve()
-    TRAIN_CSV = DATA_DIR / "train.csv"
-    ITEMS_CSV = DATA_DIR / "items.csv"
+    TRAIN_CSV = DATA_DIR / train_filename
+    ITEMS_CSV = DATA_DIR / items_filename
 
     OUTPUT_DIR = Path(output_dir).resolve()
     OUTPUT_DATASETS_DIR = OUTPUT_DIR / "datasets"
@@ -60,6 +74,7 @@ def configure_runtime(data_dir: Path | str, output_dir: Path | str) -> None:
 
 # ── Split boundaries ────────────────────────────────────────────────────────
 # Naming convention used in this project: Train -> Test -> Validation.
+
 
 TRAIN_DAY_START = 26
 TRAIN_DAY_END = 70
@@ -181,10 +196,26 @@ REG_FINAL_NO_GROUP34: list[str] = [
     f for f in REG_FINAL if f != "group34"
 ]
 
+# ── PharmForm ablation feature sets (CLS only) ──────────────────────────────
+
+CLS_PHARMFORM_V0_BASELINE: list[str] = [
+    f for f in CLS_FINAL if f != "pharmForm_norm"
+]
+
+CLS_PHARMFORM_V1_CLEAN: list[str] = list(CLS_FINAL)
+
+CLS_PHARMFORM_V2_GROUP: list[str] = CLS_PHARMFORM_V0_BASELINE + [
+    "pharmform_group", "pharmform_missing_flag", "pharmform_unmapped_flag",
+]
+
+CLS_PHARMFORM_V3_CLEAN_AND_GROUP: list[str] = CLS_FINAL + [
+    "pharmform_group", "pharmform_missing_flag", "pharmform_unmapped_flag",
+]
+
 # Columns to cast as string before Orange CSV export
 CATEGORICAL_AS_STRING: list[str] = [
     "pid_segment", "category_norm", "campaignIndex_norm", "pharmForm_norm",
-    "group12",
+    "pharmform_group", "pharmForm_clean", "group12",
 ]
 
 # Export-only prefix for numeric-looking categorical columns.
@@ -200,7 +231,7 @@ VERBOTEN_CLS: list[str] = [
     "revenue", "lineID",
     "click", "basket",
     "quantity", "quantity_class", "qty_suspicious",
-    "order",
+    "order", "q_raw",
     "pid_likelihood",
     "day_7_qty_mean_oof",   # REG-only
 ]
@@ -209,7 +240,7 @@ VERBOTEN_REG: list[str] = [
     "revenue", "lineID",
     "click", "basket",
     "quantity", "quantity_class", "qty_suspicious",
-    "order",
+    "order", "q_raw",
     "pid_likelihood",
     "num_pid_order",         # Leakage: zählt Bestellungen ≈ quantity
     "day_7_likelihood",      # CLS-only

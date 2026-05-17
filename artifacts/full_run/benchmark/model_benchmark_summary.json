@@ -1,0 +1,65 @@
+{
+  "timestamp_utc": "2026-05-17T20:47:42Z",
+  "output_dir": "C:\\Users\\karim\\OneDrive - FHNW\\Documents\\Analytics Project Code\\artifacts\\full_run",
+  "benchmark_dir": "C:\\Users\\karim\\OneDrive - FHNW\\Documents\\Analytics Project Code\\artifacts\\full_run\\benchmark",
+  "max_train_rows": 200000,
+  "max_eval_rows": 100000,
+  "selection": {
+    "cls": "highest f1",
+    "reg": "lowest mae"
+  },
+  "elapsed_s": 28.59,
+  "benchmark_is_final_model_selection": false,
+  "quick_benchmark_winners_diagnostic_only": [
+    {
+      "task": "cls",
+      "variant": "expanded",
+      "model": "LogisticRegressionBalanced",
+      "split": "validation",
+      "n_train": 200000,
+      "n_eval": 100000,
+      "selection_metric": "f1",
+      "selection_value": 0.4131802147,
+      "training_target_median": null,
+      "status": "ok",
+      "error": "",
+      "accuracy": 0.60909,
+      "f1": 0.4131802147,
+      "pr_auc": 0.3438817144,
+      "roc_auc": 0.6260496537,
+      "mae": null,
+      "median_ae": null,
+      "rmse": null,
+      "r2": null,
+      "elapsed_s": 1.933
+    },
+    {
+      "task": "reg",
+      "variant": "expanded",
+      "model": "DummyMedian",
+      "split": "validation",
+      "n_train": 200000,
+      "n_eval": 87746,
+      "selection_metric": "mae",
+      "selection_value": 0.3400496889,
+      "training_target_median": 1.0,
+      "status": "ok",
+      "error": "",
+      "accuracy": null,
+      "f1": null,
+      "pr_auc": null,
+      "roc_auc": null,
+      "mae": 0.3400496889,
+      "median_ae": 0.0,
+      "rmse": 1.3749304535,
+      "r2": -0.0651531403,
+      "elapsed_s": 0.007
+    }
+  ],
+  "files": {
+    "results_csv": "C:\\Users\\karim\\OneDrive - FHNW\\Documents\\Analytics Project Code\\artifacts\\full_run\\benchmark\\model_benchmark_results.csv",
+    "quick_benchmark_winners_csv": "C:\\Users\\karim\\OneDrive - FHNW\\Documents\\Analytics Project Code\\artifacts\\full_run\\benchmark\\quick_benchmark_winners.csv",
+    "summary_json": "C:\\Users\\karim\\OneDrive - FHNW\\Documents\\Analytics Project Code\\artifacts\\full_run\\benchmark\\model_benchmark_summary.json",
+    "summary_txt": "C:\\Users\\karim\\OneDrive - FHNW\\Documents\\Analytics Project Code\\artifacts\\full_run\\benchmark\\model_benchmark_summary.txt"
+  }
+}

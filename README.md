@@ -24,8 +24,14 @@ python -m venv .venv
 # 3. Install dependencies
 pip install -r requirements.txt
 
+# Windows/PyCharm: falls python nicht gefunden wird, py verwenden
+py -m pip install -r requirements.txt
+
 # 4. Run the sample pipeline (default: small synthetic data)
 python scripts/run_pipeline.py
+
+# Windows/PyCharm Alternative
+py scripts/run_pipeline.py
 
 # Optional: run sample pipeline plus quick model benchmark
 python scripts/run_pipeline.py --benchmark
@@ -50,9 +56,10 @@ plus a reason on failure.
 `python scripts/run_pipeline.py` (ohne Argumente) startet automatisch den
 Sample-Lauf:
 
-1. Liest die kleinen Sample-Rohdaten aus [data/sample/train.csv](data/sample/train.csv)
-   und [data/sample/items.csv](data/sample/items.csv) (~300 Zeilen, 8 PIDs,
-   gepipte CSVs).
+1. Liest die kleinen Sample-Rohdaten aus [data/sample/train_sample.csv](data/sample/train_sample.csv)
+  und [data/sample/items_sample.csv](data/sample/items_sample.csv) (~300 Zeilen,
+  8 PIDs, gepipte CSVs). Die Namen enthalten bewusst `_sample`, damit sie
+  nicht mit den echten Full-Daten verwechselt werden.
 2. Fuehrt das Preprocessing aus (Spalten bereinigen, `quantity` ableiten,
    suspekte Zeilen markieren).
 3. Splittet chronologisch: Train (Tag 26-70), Test (71-81), Validation
@@ -69,8 +76,12 @@ Die Zahlen sind **nicht** als Modell- oder Geschaeftsergebnis interpretierbar.
 ## Full-Run mit echten Daten
 
 Die echten Full-Daten (mehrere Millionen Zeilen) sind nicht Teil des
-Repositories. Für Full-Runs werden sie als `data/raw/train.csv` und
-`data/raw/items.csv` erwartet (Trennzeichen `|`):
+Repositories. Fuer Full-Runs muessen die echten Dateien manuell unter
+`data/raw/` abgelegt werden. Erwartet werden exakt diese kleingeschriebenen
+Dateinamen mit Trennzeichen `|`:
+
+- `data/raw/train.csv`
+- `data/raw/items.csv`
 
 ```powershell
 python scripts/run_pipeline.py --full
@@ -80,30 +91,40 @@ python scripts/run_pipeline.py --full --output-dir artifacts/my_run
 python scripts/run_pipeline.py --full --no-orange-export
 ```
 
+Windows/PyCharm-Alternative:
+
+```powershell
+py scripts/run_pipeline.py --full --benchmark
+```
+
 Fehlen die Rohdaten, bricht der Lauf **ohne Python-Traceback** ab und nennt
 die erwarteten Pfade sowie den Sample-Befehl als Alternative.
 
 CLI-Optionen:
 
-| Flag                           | Effekt                                                    |
-| ------------------------------ | --------------------------------------------------------- |
-| `--sample` (default)           | Daten aus `data/sample/`, Output `artifacts/sample_run/`. |
-| `--full`                       | Daten aus `data/raw/`, Output `artifacts/full_run/`.      |
-| `--mode safe_only` (default)   | Basisfeatures, keine Conditional/Orange-Exports.          |
-| `--mode safe_plus_conditional` | + Conditional Features + Orange CSVs.                     |
-| `--output-dir <pfad>`          | Eigenes Output-Verzeichnis.                               |
-| `--no-orange-export`           | Orange-CSV-Export deaktivieren.                           |
-| `--benchmark`                  | Nach erfolgreichem Run einen schnellen Modellbenchmark ausfuehren. |
-| `--benchmark-max-train-rows N` | Maximale Trainingszeilen pro Task fuer den Benchmark; `0` = kein Limit. |
+| Flag                           | Effekt                                                                         |
+| ------------------------------ | ------------------------------------------------------------------------------ |
+| `--sample` (default)           | Daten aus `data/sample/`, Output `artifacts/sample_run/`.                      |
+| `--full`                       | Daten aus `data/raw/`, Output `artifacts/full_run/`.                           |
+| `--mode safe_only` (default)   | Basisfeatures, keine Conditional/Orange-Exports.                               |
+| `--mode safe_plus_conditional` | + Conditional Features + Orange CSVs.                                          |
+| `--output-dir <pfad>`          | Eigenes Output-Verzeichnis.                                                    |
+| `--no-orange-export`           | Orange-CSV-Export deaktivieren.                                                |
+| `--benchmark`                  | Optionaler, diagnostischer Schnellbenchmark nach erfolgreichem Run.            |
+| `--benchmark-max-train-rows N` | Maximale Trainingszeilen pro Task fuer den Benchmark; `0` = kein Limit.        |
 | `--benchmark-max-eval-rows N`  | Maximale Validation/Test-Zeilen pro Task fuer den Benchmark; `0` = kein Limit. |
 
 ## Optionaler Modellbenchmark
 
 Mit `--benchmark` startet nach der Datenaufbereitung automatisch ein schneller
-sklearn-Benchmark auf den erzeugten Feature-Matrizen. Verglichen werden alle
-verfuegbaren Matrix-Varianten (`conditional`, `expanded`, `base`) und mehrere
-einfache Modelle. Die Auswahl erfolgt auf dem Validation-Split, falls
-vorhanden, sonst auf dem Test-Split:
+sklearn-Benchmark auf den erzeugten Feature-Matrizen. Dieser Benchmark ist
+optional und dient nur zur technischen Plausibilitaetspruefung des Pipeline-
+Outputs. Er ersetzt nicht die finale Modellierung aus den separaten CLS-/REG-
+Modellierungsauswertungen.
+
+Verglichen werden alle verfuegbaren Matrix-Varianten (`conditional`,
+`expanded`, `base`) und mehrere einfache Modelle. Die Auswahl erfolgt auf dem
+Validation-Split, falls vorhanden, sonst auf dem Test-Split:
 
 - Klassifikation (CLS): bestes Modell nach hoechstem F1.
 - Regression (REG): bestes Modell nach niedrigstem MAE.
@@ -114,16 +135,20 @@ Beispiel:
 python scripts/run_pipeline.py --full --mode safe_plus_conditional --benchmark
 ```
 
-Der Benchmark ist als schneller technischer Vergleich gedacht, nicht als Ersatz
-fuer die ausfuehrlichen Modellierungs-Notebooks. Die Ergebnisse werden nach
-`<output-dir>/benchmark/` geschrieben:
+Abweichende Quick-Benchmark-Winner sind wegen Train-/Eval-Caps, Feature-Set,
+Threshold-Handling und Laufzeitbegrenzung moeglich. Die finale
+Modellentscheidung bleibt in der Modellierungsdokumentation: CLS final
+HistGradientBoosting mit Threshold 0.22; REG final Always-1 / DummyMedian, da
+Median `quantity` = 1.
+
+Die Ergebnisse werden nach `<output-dir>/benchmark/` geschrieben:
 
 ```
 benchmark/
-├── model_benchmark_results.csv   # alle Benchmark-Metriken
-├── best_models.csv               # bestes CLS- und REG-Modell
-├── model_benchmark_summary.json  # maschinenlesbare Zusammenfassung
-└── model_benchmark_summary.txt   # lesbare Kurzfassung
+├── model_benchmark_results.csv       # alle Benchmark-Metriken
+├── quick_benchmark_winners.csv       # diagnostische Gewinner pro Task
+├── model_benchmark_summary.json      # maschinenlesbare Zusammenfassung
+└── model_benchmark_summary.txt       # lesbare Kurzfassung
 ```
 
 ## Outputs
@@ -171,7 +196,7 @@ scripts/
   run_pipeline.py        # Einstieg fuer Sample- und Full-Run
   smoke_test.py          # Selbsttest fuer einen frischen Clone
 data/
-  sample/                # kleine, getrackte Sample-Rohdaten
+  sample/                # kleine, getrackte Sample-Rohdaten (*_sample.csv)
   raw/                   # Platzhalter fuer echte Full-Daten (ignored)
 Feature Engineering/     # eigentliche Pipeline (Module)
   config.py
@@ -187,9 +212,11 @@ Tableau/                 # optional, nicht fuer den Lauf noetig
 
 ## Troubleshooting
 
-- `ModuleNotFoundError: pandas` -> `pip install -r requirements.txt`.
+- `ModuleNotFoundError: pandas` -> `pip install -r requirements.txt` oder unter
+  Windows/PyCharm `py -m pip install -r requirements.txt`.
 - `Raw data not found.` bei `--full` -> echte Daten nach `data/raw/` legen
-  oder ohne `--full` aufrufen (Sample-Lauf).
+  und exakt als `train.csv` sowie `items.csv` benennen; oder ohne `--full`
+  aufrufen (Sample-Lauf).
 - `UnicodeEncodeError` auf alten Windows-Konsolen -> `set PYTHONUTF8=1`
   setzen oder die mitgelieferten Wrapper (`scripts/run_pipeline.py`,
   `scripts/smoke_test.py`) verwenden, die UTF-8 selbst aktivieren.
