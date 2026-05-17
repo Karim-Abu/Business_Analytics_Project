@@ -44,6 +44,7 @@ except Exception:
     pass
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
+SCRIPTS_DIR = Path(__file__).resolve().parent
 FE_DIR = PROJECT_ROOT / "Feature Engineering"
 
 if not FE_DIR.exists():
@@ -55,11 +56,24 @@ if not FE_DIR.exists():
     )
     sys.exit(2)
 
-# Make Feature Engineering importable as a flat module set.
-sys.path.insert(0, str(FE_DIR))
+# Make Feature Engineering and scripts/ importable regardless of the
+# working directory. In PyCharm the launcher may not add scripts/ to
+# sys.path automatically, so both directories are inserted explicitly.
+for _p in (str(FE_DIR), str(SCRIPTS_DIR)):
+    if _p not in sys.path:
+        sys.path.insert(0, _p)
 
-from main_build_datasets import main, write_run_manifest  # noqa: E402
-from run_model_benchmark import run_benchmark  # noqa: E402
+try:
+    from main_build_datasets import main, write_run_manifest  # noqa: E402
+    from run_model_benchmark import run_benchmark  # noqa: E402
+except ImportError as _exc:
+    print(
+        f"[run_pipeline] Import fehlgeschlagen: {_exc}\n"
+        "In PyCharm: 'Feature Engineering/' als Sources Root markieren:\n"
+        "  Rechtsklick auf den Ordner -> Mark Directory as -> Sources Root",
+        file=sys.stderr,
+    )
+    sys.exit(2)
 
 
 def _split_pipeline_and_benchmark_args(argv: list[str]) -> tuple[list[str], dict]:
