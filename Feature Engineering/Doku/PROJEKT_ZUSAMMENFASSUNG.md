@@ -153,7 +153,7 @@ Dazu kommen sechs konservative Varianten:
 
 Die Rollen der Splits sind klar:
 
-- `train_sample`: schneller Rauchtest und schneller Workflow-Aufbau in Orange
+- `train_sample`: schneller technischer Testlauf und schneller Workflow-Aufbau in Orange
 - `train_full`: eigentliches Training
 - `val`: Vergleich von Modellen und Einstellungen
 - `test`: letzte Prüfung ganz am Schluss
@@ -162,18 +162,9 @@ Im Manifest stehen pro Datei unter anderem Dateiname, Stage, Split, Zeilenzahl, 
 
 Der Export ist für Orange zusätzlich gehärtet worden. Zielspalten stehen am Ende. Relevante kategoriale Felder werden als String exportiert. `category_norm` bekommt zusätzlich das Präfix `C_`, damit Orange numerisch aussehende Kategorien nicht fälschlich als numerisch behandelt.
 
-Vor der eigentlichen Modellierung gibt es noch einen manuellen Orange-Check. Dafür liegt die Datei `Doku/ORANGE_MODELING_CHECKLIST.md` vor.
-
-Die manuellen Checks sind:
-
-- Zielspalte korrekt erkannt
-- diskrete Felder in Orange wirklich als diskret erkannt
-- Zeilenzahlen mit `export_manifest.csv` abgeglichen
-- keine unerwarteten Spalten im Import
-
 ## 9. Aktueller Status
 
-Der aktuelle Stand ist klar:
+Der aktuelle Stand:
 
 - Preprocessing: abgeschlossen genug
 - Safe Feature Engineering: abgeschlossen genug
@@ -182,11 +173,7 @@ Der aktuelle Stand ist klar:
 - Feature Selection: abgeschlossen genug
 - Orange-Export: bereit
 
-Die technischen Artefakte für die Modellierung liegen vor. Die Exportdateien wurden erzeugt, das Manifest ist vorhanden und die konservativen Varianten sind mit exportiert.
-
-Damit kann die Modellierung in Orange starten.
-
-Offen sind nicht mehr die Data-Preparation-Schritte, sondern die manuellen Orange-Checks, der eigentliche Modellvergleich und die finale Bewertung.
+Die technischen Artefakte für die Modellierung liegen vor. Die Exportdateien wurden erzeugt, das Manifest ist vorhanden und die konservativen Varianten sind mit exportiert. Die Modellierung wurde auf Basis dieser Artefakte durchgeführt.
 
 ## 10. Wichtige methodische Hinweise
 
@@ -200,17 +187,10 @@ Kaltstart-Fälle bleiben schwierig. Wenn für eine PID wenig oder keine Historie
 
 `group12` und `group34` sollten vorsichtig interpretiert werden. Sie sind technisch verfügbar und teilweise nützlich, aber ihre direkte Aussagekraft ist schwächer abgesichert als bei mehreren Conditional Features. Deshalb sollten die No-Group-Varianten als Sensitivitätscheck mitlaufen.
 
-## 11. Nächste Schritte
-
-1. Zuerst einen Orange-Rauchtest mit `train_sample` und den passenden `val`-Dateien aufsetzen.
-2. Danach mehrere Modelle auf `cls_val.csv` und `reg_val.csv` vergleichen.
-3. Anschließend die konservativen Varianten `CLS_FINAL_NO_GROUPS` und `REG_FINAL_NO_GROUP34` testen.
-4. Den Test-Split erst ganz am Schluss für die letzte Kontrollmessung verwenden.
-
 ## Kurzfazit
 
-Die Data Preparation ist weit genug abgeschlossen, um mit der Modellierung zu beginnen.
+Die Data Preparation ist abgeschlossen.
 
 Das Projekt hat jetzt saubere Splits, dokumentierte Feature-Sets, Audits, Feature-Selection-Ergebnisse und Orange-Exportdateien mit Manifest.
 
-Der nächste Schritt ist nicht mehr neues Feature Engineering, sondern ein sauberer Modellvergleich in Orange.
+Die Modellierung baut auf diesen vorbereiteten Artefakten auf.

@@ -518,24 +518,16 @@ Regel:
 
 kleine Strata nicht künstlich aufblähen
 Validation/Test ungesampelt
-Nächster konkreter Arbeitsauftrag für Copilot
-Jetzt als Nächstes bauen
-src/feature_engineering_conditional.py
-main_build_datasets.py für safe_plus_conditional
-kleinen Konsistenzcheck:
-sample_reg() muss dieselbe REG-Maske verwenden wie build_safe_feature_matrices()
-Dabei strikt beachten
+
+Scope-Grenzen:
+
 keine Architekturänderung
 keine neuen Module
 kein Random KFold
 keine Verwendung von Tagen 1–25 als Default-History
-keine Modellierung
+keine Modellierung in der Feature-Engineering-Pipeline
 keine zusätzlichen Features ausserhalb der freigegebenen Logik
-Was Copilot NICHT tun soll
-kein automatisches Refactoring der gesamten Codebasis
-keine Modellierung hinzufügen
-keine zufälligen CV-Folds für OOF-Encoding
-keine stillschweigende Imputation ausser explizit gewünscht
+keine stillschweigende Imputation
 keine Änderung des Splits
 keine Nutzung verbotener Features
 pid_likelihood nicht wieder einführen
@@ -641,8 +633,6 @@ revenue nie als Modellfeature verwenden
   - `export_orange_csvs()`: erzeugt 6 zusätzliche Varianten-CSVs (train_full/val/test × 2 Varianten)
   - Manifest enthält jetzt 14 Einträge (8 Base + 6 Varianten)
 
-- `Doku/ORANGE_MODELING_CHECKLIST.md` — neue manuelle Prüfliste für Orange-Import
-
 **Keine Änderungen an:** Preprocessing, Splits, Sampling, Feature Engineering, bestehende Feature-Listen.
 
 **Exportierte Dateien** (`outputs/orange_exports/`, 14 + Manifest):
@@ -664,10 +654,4 @@ revenue nie als Modellfeature verwenden
 | reg_val_no_group34.csv        | REG   | REG_FINAL_NO_GROUP34 | val          | 25       |
 | reg_test_no_group34.csv       | REG   | REG_FINAL_NO_GROUP34 | test         | 25       |
 
-**Empfohlene Orange-Startreihenfolge:**
-
-1. Schneller Vergleich mit `train_sample` + `val` + `test` (CLS_FINAL / REG_FINAL)
-2. Sensitivitätsvergleich: CLS_FINAL vs. CLS_FINAL_NO_GROUPS auf train_full/val/test
-3. Analog: REG_FINAL vs. REG_FINAL_NO_GROUP34
-
-**READY_FOR_ORANGE_MODELING = YES**
+**Status:** Orange-Exports und konservative Varianten wurden erzeugt. Die Modellierung wurde anschliessend separat durchgeführt.

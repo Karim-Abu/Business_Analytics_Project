@@ -4,9 +4,9 @@ End-to-end data-preparation pipeline for a dynamic-pricing analytics study
 (CRISP-DM data understanding -> feature engineering -> classification &
 regression modelling).
 
-The repository is designed so that **anyone with a fresh clone can run the
-pipeline immediately** on a small sample dataset, without Orange, without
-Tableau, and without the original full dataset.
+The repository supports a sample pipeline run from a fresh clone on a small
+sample dataset, without Orange, without Tableau, and without the original full
+dataset.
 
 ## Quickstart
 
@@ -27,7 +27,7 @@ pip install -r requirements.txt
 # 4. Run the sample pipeline (default: small synthetic data)
 python scripts/run_pipeline.py
 
-# 5. Smoke test (verifies that everything still works)
+# 5. Smoke test
 python scripts/smoke_test.py
 ```
 
@@ -35,13 +35,14 @@ The smoke test prints `SMOKE TEST PASSED` on success or `SMOKE TEST FAILED`
 plus a reason on failure.
 
 > **Wichtig:**
+>
 > - Orange ist **nicht** noetig, um den Code auszufuehren.
 > - Tableau ist **nicht** noetig, um den Code auszufuehren.
 > - Echte Full-Daten sind **optional** und nicht im Repo enthalten.
 > - Der Sample-Run prueft die **technische Lauffaehigkeit**, nicht die
 >   finale Modellqualitaet.
 
-## Was passiert beim Sample-Run?
+## Sample-Run
 
 `python scripts/run_pipeline.py` (ohne Argumente) startet automatisch den
 Sample-Lauf:
@@ -65,8 +66,8 @@ Die Zahlen sind **nicht** als Modell- oder Geschaeftsergebnis interpretierbar.
 ## Full-Run mit echten Daten
 
 Die echten Full-Daten (mehrere Millionen Zeilen) sind nicht Teil des
-Repositories. Wer sie hat, legt sie als `data/raw/train.csv` und
-`data/raw/items.csv` ab (Trennzeichen `|`) und ruft auf:
+Repositories. Für Full-Runs werden sie als `data/raw/train.csv` und
+`data/raw/items.csv` erwartet (Trennzeichen `|`):
 
 ```powershell
 python scripts/run_pipeline.py --full
@@ -80,14 +81,14 @@ die erwarteten Pfade sowie den Sample-Befehl als Alternative.
 
 CLI-Optionen:
 
-| Flag | Effekt |
-|------|--------|
-| `--sample` (default) | Daten aus `data/sample/`, Output `artifacts/sample_run/`. |
-| `--full` | Daten aus `data/raw/`, Output `artifacts/full_run/`. |
-| `--mode safe_only` (default) | Basisfeatures, keine Conditional/Orange-Exports. |
-| `--mode safe_plus_conditional` | + Conditional Features + Orange CSVs. |
-| `--output-dir <pfad>` | Eigenes Output-Verzeichnis. |
-| `--no-orange-export` | Orange-CSV-Export deaktivieren. |
+| Flag                           | Effekt                                                    |
+| ------------------------------ | --------------------------------------------------------- |
+| `--sample` (default)           | Daten aus `data/sample/`, Output `artifacts/sample_run/`. |
+| `--full`                       | Daten aus `data/raw/`, Output `artifacts/full_run/`.      |
+| `--mode safe_only` (default)   | Basisfeatures, keine Conditional/Orange-Exports.          |
+| `--mode safe_plus_conditional` | + Conditional Features + Orange CSVs.                     |
+| `--output-dir <pfad>`          | Eigenes Output-Verzeichnis.                               |
+| `--no-orange-export`           | Orange-CSV-Export deaktivieren.                           |
 
 ## Outputs
 
@@ -123,8 +124,8 @@ artifacts/sample_run/
 ```
 
 Der wichtigste Einstieg fuer den Reviewer ist die `RUN_MANIFEST.md`: sie
-listet Run-Typ, Build-Mode, Eingaben, Zeilenzahlen, alle erzeugten Dateien
-mit Groessen sowie naechste sinnvolle Schritte.
+listet Run-Typ, Build-Mode, Eingaben, Zeilenzahlen und alle erzeugten Dateien
+mit Groessen.
 
 ## Repository-Struktur (Kurzueberblick)
 

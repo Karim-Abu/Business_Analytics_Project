@@ -2,7 +2,7 @@
 
 Dieses Dokument beschreibt die Voraussetzungen und Schritte, um die Skripte und Notebooks in diesem Projekt lokal auszufuehren.
 
-Es gibt zwei typische Wege:
+Zwei typische Varianten:
 
 1. Nur die Modellierungs-Notebooks mit bereits vorbereiteten CSV-Dateien aus OneDrive ausfuehren.
 2. Die Datensaetze aus den Rohdaten neu erzeugen und danach die Modellierungs-Notebooks starten.
@@ -38,7 +38,7 @@ git clone https://github.com/Karim-Abu/Business_Analytics_Project.git
 cd Business_Analytics_Project
 ```
 
-Falls das Projekt nicht per `git clone`, sondern per ZIP oder OneDrive uebergeben wird, ist der Ordnername egal. Wichtig ist nur, dass die Ordnerstruktur unveraendert bleibt.
+Falls das Projekt nicht per `git clone`, sondern per ZIP oder OneDrive uebergeben wird, ist der Ordnername frei waehlbar. Die Ordnerstruktur muss unveraendert bleiben.
 
 ### Virtuelle Umgebung erstellen
 
@@ -66,7 +66,7 @@ pip install -r requirements.txt
 
 ### VS Code richtig oeffnen
 
-Das Projekt muss als gesamter Workspace-Root geoeffnet werden, also der komplette Projektordner. Nicht nur `Modellierung/` oder `Feature Engineering/` einzeln oeffnen.
+Das Projekt muss als gesamter Workspace-Root geoeffnet werden, also der komplette Projektordner. Das Oeffnen einzelner Unterordner wie `Modellierung/` oder `Feature Engineering/` reicht nicht aus.
 
 Grund: Die Notebooks verwenden `Path().resolve()` und erwarten den Projekt-Root als Arbeitsverzeichnis.
 
@@ -180,7 +180,7 @@ Die Pipeline erzeugt unter anderem:
 - `Feature Engineering/outputs/metadata/`
 - `Feature Engineering/outputs/orange_exports/`
 
-### Was danach fuer die Modellierungs-Notebooks zu tun ist
+### Nachgelagerte Ablage fuer Modellierungs-Notebooks
 
 Nach `safe_plus_conditional` liegen die exportierten CSV-Dateien in `Feature Engineering/outputs/orange_exports/`.
 
@@ -206,7 +206,7 @@ Die Notebooks sind weitgehend unabhaengig. Eine relevante Abhaengigkeit gibt es 
 4. `threshold_tuning_cls_100k.ipynb`
 5. `full_scale_reg_modeling_minimal.ipynb`
 
-Warum zuerst `full_scale_cls_modeling.ipynb`?
+Abhaengigkeit des Challenger-Notebooks:
 
 `quick_challenger_lgbm_catboost.ipynb` liest die Datei `full_scale_cls_best_models.csv` als Referenz. Diese Datei wird vom Full-Scale-CLS-Notebook erzeugt.
 
@@ -214,7 +214,7 @@ Warum zuerst `full_scale_cls_modeling.ipynb`?
 
 ## 7. Kurzcheck vor dem Start
 
-Vor dem ersten Lauf sollte Folgendes stimmen:
+Vor dem ersten Lauf:
 
 1. Der komplette Projektordner ist in VS Code geoeffnet.
 2. Die virtuelle Umgebung `.venv` ist als Notebook-Kernel ausgewaehlt.
@@ -229,7 +229,7 @@ Vor dem ersten Lauf sollte Folgendes stimmen:
 
 Ursache: Eine Datei aus OneDrive liegt im falschen Ordner oder wurde noch nicht kopiert.
 
-Pruefen:
+Zu pruefende Pfade:
 
 - `Modellierung/CLS/Daten/` fuer CLS-Dateien
 - `Modellierung/` fuer `cls_test_100k_predictions_gb_logreg.csv`

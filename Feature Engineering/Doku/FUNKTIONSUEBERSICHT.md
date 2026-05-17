@@ -1672,9 +1672,9 @@ Runde 4 baut auf den exportierten Matrizen und ergänzt den Filterblick um Embed
 - **Embedded Selection**: Featurebewertung aus trainierten Modellen (z. B. Koeffizienten/Importances).
 - **Filter Method**: Univariate Vorbewertung ohne Modellinteraktion (z. B. MI, Spearman, Chi2).
 
-## Was muss ich verteidigen können? (Checkliste)
+## Prüfpunkte für die fachliche Verteidigung
 
-Nach dem Lesen dieses Dokuments solltest du diese Fragen sicher beantworten können:
+Relevante Prüfpunktfragen:
 
 - Warum Two-Stage?
 - Warum Time Split?
