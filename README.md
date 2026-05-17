@@ -27,6 +27,9 @@ pip install -r requirements.txt
 # 4. Run the sample pipeline (default: small synthetic data)
 python scripts/run_pipeline.py
 
+# Optional: run sample pipeline plus quick model benchmark
+python scripts/run_pipeline.py --benchmark
+
 # 5. Smoke test
 python scripts/smoke_test.py
 ```
@@ -72,6 +75,7 @@ Repositories. Für Full-Runs werden sie als `data/raw/train.csv` und
 ```powershell
 python scripts/run_pipeline.py --full
 python scripts/run_pipeline.py --full --mode safe_plus_conditional
+python scripts/run_pipeline.py --full --benchmark
 python scripts/run_pipeline.py --full --output-dir artifacts/my_run
 python scripts/run_pipeline.py --full --no-orange-export
 ```
@@ -89,6 +93,38 @@ CLI-Optionen:
 | `--mode safe_plus_conditional` | + Conditional Features + Orange CSVs.                     |
 | `--output-dir <pfad>`          | Eigenes Output-Verzeichnis.                               |
 | `--no-orange-export`           | Orange-CSV-Export deaktivieren.                           |
+| `--benchmark`                  | Nach erfolgreichem Run einen schnellen Modellbenchmark ausfuehren. |
+| `--benchmark-max-train-rows N` | Maximale Trainingszeilen pro Task fuer den Benchmark; `0` = kein Limit. |
+| `--benchmark-max-eval-rows N`  | Maximale Validation/Test-Zeilen pro Task fuer den Benchmark; `0` = kein Limit. |
+
+## Optionaler Modellbenchmark
+
+Mit `--benchmark` startet nach der Datenaufbereitung automatisch ein schneller
+sklearn-Benchmark auf den erzeugten Feature-Matrizen. Verglichen werden alle
+verfuegbaren Matrix-Varianten (`conditional`, `expanded`, `base`) und mehrere
+einfache Modelle. Die Auswahl erfolgt auf dem Validation-Split, falls
+vorhanden, sonst auf dem Test-Split:
+
+- Klassifikation (CLS): bestes Modell nach hoechstem F1.
+- Regression (REG): bestes Modell nach niedrigstem MAE.
+
+Beispiel:
+
+```powershell
+python scripts/run_pipeline.py --full --mode safe_plus_conditional --benchmark
+```
+
+Der Benchmark ist als schneller technischer Vergleich gedacht, nicht als Ersatz
+fuer die ausfuehrlichen Modellierungs-Notebooks. Die Ergebnisse werden nach
+`<output-dir>/benchmark/` geschrieben:
+
+```
+benchmark/
+├── model_benchmark_results.csv   # alle Benchmark-Metriken
+├── best_models.csv               # bestes CLS- und REG-Modell
+├── model_benchmark_summary.json  # maschinenlesbare Zusammenfassung
+└── model_benchmark_summary.txt   # lesbare Kurzfassung
+```
 
 ## Outputs
 
@@ -120,7 +156,8 @@ artifacts/sample_run/
 ├── metadata/                 # Reproduzierbarkeits-Artefakte
 │   ├── pid_segment_map.csv
 │   └── binning_edges.json
-└── orange_exports/           # nur in `safe_plus_conditional` befuellt
+├── orange_exports/           # nur in `safe_plus_conditional` befuellt
+└── benchmark/                # nur mit `--benchmark` befuellt
 ```
 
 Der wichtigste Einstieg fuer den Reviewer ist die `RUN_MANIFEST.md`: sie

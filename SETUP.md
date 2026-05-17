@@ -173,6 +173,28 @@ python main_build_datasets.py --mode safe_only
 python main_build_datasets.py --mode safe_plus_conditional
 ```
 
+Alternativ kann der Repository-Wrapper aus dem Projekt-Root verwendet werden.
+Er unterstuetzt zusaetzlich einen optionalen Modellbenchmark nach dem Run:
+
+```bash
+python scripts/run_pipeline.py --full --mode safe_plus_conditional --benchmark
+```
+
+Der Benchmark trainiert einfache sklearn-Vergleichsmodelle auf den erzeugten
+Feature-Matrizen und waehlt das beste CLS-Modell nach F1 sowie das beste
+REG-Modell nach MAE. Die Ergebnisse liegen danach im jeweiligen Output-Ordner
+unter `benchmark/`, zum Beispiel:
+
+- `model_benchmark_results.csv`
+- `best_models.csv`
+- `model_benchmark_summary.txt`
+- `model_benchmark_summary.json`
+
+Fuer sehr grosse Full-Runs begrenzen die Standardwerte den Benchmark auf
+200.000 Trainingszeilen und 100.000 Validation/Test-Zeilen pro Task. Mit
+`--benchmark-max-train-rows 0` und `--benchmark-max-eval-rows 0` kann ohne
+Limit gearbeitet werden.
+
 Die Pipeline erzeugt unter anderem:
 
 - `Feature Engineering/outputs/datasets/`
